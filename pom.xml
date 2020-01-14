@@ -2,8 +2,8 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-	                         http://maven.apache.org/xsd/maven-4.0.0.xsd" >
+	       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                          http://maven.apache.org/xsd/maven-4.0.0.xsd" >
  
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.com.capacitacion</groupId>
@@ -66,13 +66,13 @@
 			<scope>test</scope>
 		</dependency> 
  
- 	    <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
+ 	  <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId> 
 		</dependency>
  	
- 	    <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA -->	
+ 	  <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA -->	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-sleuth</artifactId> 
@@ -83,13 +83,13 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId> 
 		</dependency>		
  
-	    <!-- IMPORTANTE: [CONFIG SERVER], manejo de archivos de CONFIGURACION externos -->
-	    <dependency>
+	  <!-- IMPORTANTE: [CONFIG SERVER], manejo de archivos de CONFIGURACION externos -->
+	  <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>  
 		</dependency>
  
-	    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] 
+	   <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] 
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>

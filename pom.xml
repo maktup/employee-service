@@ -2,8 +2,8 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-	                          http://maven.apache.org/xsd/maven-4.0.0.xsd" >
+	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                         http://maven.apache.org/xsd/maven-4.0.0.xsd" >
  
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.com.capacitacion</groupId>
@@ -29,7 +29,7 @@
  
 	<dependencyManagement>
 		<dependencies>
-		  <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
 			<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>
@@ -66,13 +66,13 @@
 			<scope>test</scope>
 		</dependency> 
  
- 	  <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
+ 	    <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId> 
 		</dependency>
  	
- 	  <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA -->	
+ 	    <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA -->	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-sleuth</artifactId> 
@@ -83,13 +83,13 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId> 
 		</dependency>		
  
-	  <!-- IMPORTANTE: [CONFIG SERVER], manejo de archivos de CONFIGURACION externos -->
-	  <dependency>
+	    <!-- IMPORTANTE: [CONFIG SERVER], manejo de archivos de CONFIGURACION externos -->
+	    <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>  
 		</dependency>
  
-	   <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] 
+	    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] 
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
@@ -97,31 +97,31 @@
 		</dependency>
 		-->
 		
-	  <!-- IMPORTANTE: [EUREKA CLIENT] 
+	    <!-- IMPORTANTE: [EUREKA CLIENT] 
 		<dependency> 
 		  <groupId>org.springframework.cloud</groupId> 
 		  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>  
 		</dependency> 
 		--> 
-	  <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
+	    <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId> 
 		    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>  
 		</dependency>	
  
-	  <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas 
+	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
-    -->
-	  <!-- IMPORTANTE: [KUBERNETES] 
+        -->
+	    <!-- IMPORTANTE: [KUBERNETES] 
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-kubernetes</artifactId>
 		    <version>1.1.1.RELEASE</version>
 		</dependency>
-    -->
+         -->
  
 		<!-- OTROS -->	
 		<dependency>

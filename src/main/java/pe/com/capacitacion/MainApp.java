@@ -31,7 +31,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 		public EmpleadoRepository repository(){
 				EmpleadoRepository objRepository = new EmpleadoRepository(); 
 				
-				objRepository.agregarEmpleado( new Empleado( 1L, "CESAR GUERRA",    34, "ARCHITECT", 1L ) );
+				objRepository.agregarEmpleado( new Empleado( 1L, "John Smith",      34, "Analyst",   1L ) );
 				objRepository.agregarEmpleado( new Empleado( 1L, "Darren Hamilton", 37, "Manager",   1L ) );
 				objRepository.agregarEmpleado( new Empleado( 1L, "Tom Scott",       26, "Developer", 1L ) );
 				objRepository.agregarEmpleado( new Empleado( 1L, "Anna London",     39, "Analyst",   2L ) );		

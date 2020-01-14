@@ -29,7 +29,7 @@
  
 	<dependencyManagement>
 		<dependencies>
-		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+		  <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
 			<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>
@@ -97,31 +97,31 @@
 		</dependency>
 		-->
 		
-	    <!-- IMPORTANTE: [EUREKA CLIENT] 
+	  <!-- IMPORTANTE: [EUREKA CLIENT] 
 		<dependency> 
 		  <groupId>org.springframework.cloud</groupId> 
 		  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>  
 		</dependency> 
 		--> 
-	    <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
+	  <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId> 
 		    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>  
 		</dependency>	
  
-	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas 
+	  <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
-        -->
-	    <!-- IMPORTANTE: [KUBERNETES] 
+    -->
+	  <!-- IMPORTANTE: [KUBERNETES] 
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-kubernetes</artifactId>
 		    <version>1.1.1.RELEASE</version>
 		</dependency>
-         -->
+    -->
  
 		<!-- OTROS -->	
 		<dependency>

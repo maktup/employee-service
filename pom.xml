@@ -97,11 +97,12 @@
 		</dependency>
 		-->
 		
-	    <!-- IMPORTANTE: [EUREKA CLIENT] --> 
+	    <!-- IMPORTANTE: [EUREKA CLIENT]  
 		<dependency> 
 		  <groupId>org.springframework.cloud</groupId> 
 		  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>  
 		</dependency> 
+		-->
 		
 	    <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
 		<dependency>

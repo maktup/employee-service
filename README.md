@@ -11,7 +11,7 @@ Los LINK [GET] son:
 
 2. consultarEmpleadosPorId: [http://localhost:8092/employeeservice/get/empleados/{id}]  
    http://localhost:8092/employeeservice/get/empleados/1
-                                                             
+                                                                  
 3. consultarEmpleadosPorDepartamento: [http://localhost:8092/employeeservice/get/departamentos/{departmentId}/empleados]   
    http://localhost:8092/employeeservice/get/departamentos/1/empleados
  

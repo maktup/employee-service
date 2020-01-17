@@ -36,6 +36,10 @@ import pe.com.capacitacion.service.EmpleadoService;
 		public ResponseMsg consultarEmpleadosAll(){
 			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" );
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService();
+			   
+			   String vValorKUBERNETES = System.getenv().getOrDefault( "GREETING_PREFIX", "Hi" ); 
+			   LOGGER.info( "==============> vValorKUBERNETES: " + vValorKUBERNETES );
+			   
 			   return objResponseMsg; 
 		}
 		

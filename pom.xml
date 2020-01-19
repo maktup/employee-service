@@ -114,12 +114,12 @@
 		    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>  
 		</dependency>	
  
-	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas 
+	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
-        -->
+        
 	    <!-- IMPORTANTE: [KUBERNETES] 
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>

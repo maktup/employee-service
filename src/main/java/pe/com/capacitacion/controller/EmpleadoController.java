@@ -28,6 +28,8 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( Empleado empleado ){ 
 			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
+			   
+			   //Ejecutar:  
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.agregarEmpleadoService( empleado ); 
 			   return objResponseMsg; 
 		}
@@ -35,10 +37,13 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/empleados" )
 		public ResponseMsg consultarEmpleadosAll(){
 			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" );
+			   
+			   
+			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService();
 			   
-			   String vValorKUBERNETES = System.getenv().getOrDefault( "GREETING_PREFIX", "Hi" ); 
-			   LOGGER.info( "==============> vValorKUBERNETES: " + vValorKUBERNETES );
+			   //String vValorKUBERNETES = System.getenv().getOrDefault( "GREETING_PREFIX", "Hi" ); 
+			   //LOGGER.info( "==============> vValorKUBERNETES: " + vValorKUBERNETES );
 			   
 			   return objResponseMsg; 
 		}
@@ -46,6 +51,8 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/empleados/{id}" )
 		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id );
+			   
+			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id );
 			   return objResponseMsg; 
 		}
@@ -53,6 +60,8 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
 		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId );
+			   
+			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( departmentId );
 			   return objResponseMsg; 
 		}

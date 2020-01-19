@@ -13,12 +13,12 @@
     <packaging>jar</packaging>
     <version>1.0.0</version>  
     
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId> 
-		<version>2.0.5.RELEASE</version> 
-		<relativePath/> 
-	</parent> 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>  
+    </parent> 
        
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding> 
@@ -127,6 +127,12 @@
 		    <version>1.1.1.RELEASE</version>
 		</dependency>
          -->
+ 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+            <version>0.3.0.RELEASE</version>
+        </dependency>
  
 		<!-- OTROS -->	
 		<dependency>

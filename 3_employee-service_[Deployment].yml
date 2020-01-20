@@ -1,0 +1,44 @@
+
+#[DEPLOYMENT]
+#3_employee-service_[Deployment].yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service
+  namespace: default
+  labels:
+    app: microservicio-employee-service
+    role: backend
+    stage: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservicio-employee-service
+      version: v1.0.0  
+  template:
+    metadata:
+      labels:
+        app: microservicio-employee-service
+        version: v1.0.0
+    spec:
+      containers:                  
+        - name: microservicio-employee-service
+          image: maktup/employee-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+          #CONFIGURACION DE 'SECRETs': 
+          - name: BOOTADMIN_USUARIO
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_USUARIO
+                name: employee-service-secret
+          - name: BOOTADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_PASSWORD
+                name: employee-service-secret
+

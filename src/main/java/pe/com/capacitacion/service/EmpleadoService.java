@@ -84,11 +84,16 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg(); 
 			   
-			   String vNombreServicio = this.constantes.nombreServicio; 
-			   String vValor_01       = this.constantes.valor01; 
-			   String vNombres        = this.objConfigurationData01.getNombres();
-			   String vDni            = this.objConfigurationData01.getDni(); 		
+			   String vNombreServicio  = this.constantes.nombreServicio; 
+			   String vValor_01        = this.constantes.valor01; 
+			   String vNombres         = this.objConfigurationData01.getNombres();
+			   String vDni             = this.objConfigurationData01.getDni(); 		
+			   String vDnsEmployee     = this.objConfigurationData02.getEmployee(); 
+			   String vDnsDepartment   = this.objConfigurationData02.getDepartment(); 
+			   String vDnsOrganization = this.objConfigurationData02.getOrganization(); 
+			   
 			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
+			   LOGGER.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" );  
 			  
 			   List<Empleado> listaEmpleados = this.objRepositorio.consultarEmpleadosAll();
 			   Auditoria      objAuditoria   = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 

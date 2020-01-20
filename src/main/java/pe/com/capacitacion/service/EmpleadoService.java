@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import pe.com.capacitacion.bean.Auditoria;
 import pe.com.capacitacion.bean.ConfigurationData_01;
+import pe.com.capacitacion.bean.ConfigurationData_02;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.bean.ResponseMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
@@ -30,12 +31,16 @@ import pe.com.capacitacion.util.Constantes;
 		
 		@Autowired
 		private Constantes constantes; 
-		
-		@Autowired
-		private ConfigurationData_01 objConfigurationData01;  //ACCESO: inicia con [grupoconfig01]  		 
-  
+ 
 		@Autowired
 		private AuditoriaException objAuditoriaException; 
+		
+		
+        @Autowired
+        private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
+
+        @Autowired
+        private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
 		
 	   /**	
 	    * agregarEmpleadoService	
@@ -48,12 +53,17 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg(); 
 			   
-			   String vNombreServicio = this.constantes.nombreServicio; 
-			   String vValor_01       = this.constantes.valor01; 
-			   String vNombres        = this.objConfigurationData01.getNombres();
-			   String vDni            = this.objConfigurationData01.getDni(); 		
+			   String vNombreServicio  = this.constantes.nombreServicio; 
+			   String vValor_01        = this.constantes.valor01; 
+			   String vNombres         = this.objConfigurationData01.getNombres();
+			   String vDni             = this.objConfigurationData01.getDni(); 		
+			   String vDnsEmployee     = this.objConfigurationData02.getEmployee(); 
+			   String vDnsDepartment   = this.objConfigurationData02.getDepartment(); 
+			   String vDnsOrganization = this.objConfigurationData02.getOrganization(); 
+			   
 			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
-			    
+			   LOGGER.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+			   
 			   this.objRepositorio.agregarEmpleado( empleado ); 
 			   Auditoria objAuditoria = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 
   

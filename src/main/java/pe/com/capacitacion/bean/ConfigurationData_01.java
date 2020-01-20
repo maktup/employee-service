@@ -1,17 +1,20 @@
 package pe.com.capacitacion.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration; 
 import lombok.Data;
 
-@Data
-@Component
-@ConfigurationProperties( "grupoconfig01" ) 
-public class ConfigurationData_01{
+/**
+ * ConfigurationData_01
+ * @author cguerra
+ **/
+ @Data
+ @Configuration
+ @ConfigurationProperties( "grupoconfig01" ) 
+ public class ConfigurationData_01{
  
 		private String nombres;	
 		private String dni;
- 
  
 		public String getNombres() {
 			   return nombres;
@@ -28,5 +31,6 @@ public class ConfigurationData_01{
 		public void setDni(String dni) {
 			   this.dni = dni;
 		}
-  
-}
+ 
+ }
+

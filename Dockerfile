@@ -31,8 +31,13 @@ EXPOSE 8080
 #9. CREAR 'VARIABLE DE ENTORNO' 'APP_HOME': 
 ENV APP_HOME /app
 
-#EXTRA: para la configuracion DINANICA
+#------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#
 ENV NOMBRE_MICROSERVICIO=employee-service
+ENV BOOTADMIN_USUARIO=admin
+ENV BOOTADMIN_PASSWORD=admin
+ENV BOOTADMIN_URL=http://capacitacion.microservicios.boot-admin-server
+ENV ZIPKIN_URL=http://capacitacion.microservicios.zipkin-server
+#------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#
 
 #10. CREAR 'VARIABLE DE ENTORNO' 'JAVA_OPTS':  
 ENV JAVA_OPTS=""

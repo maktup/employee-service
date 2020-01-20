@@ -1,0 +1,21 @@
+
+#[SERVICE]
+#3_employee-service_[Service].yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service
+  namespace: default
+  labels:
+    app: microservicio-employee-service
+    role: backend
+    stage: production
+spec: 
+  ports:
+    - name: http
+      port: 8080
+  selector:
+    app: microservicio-employee-service
+    version: v1.0.0
+  type: NodePort

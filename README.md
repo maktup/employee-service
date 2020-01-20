@@ -2,8 +2,9 @@
 
 IMPORTANTE:
 ----------
-CONSIDERAR que los DNS, deben estar regsitrados en el archivo HOST, del S.O. 
-El 'ARCHIVO DE CONFIGURACION' para el MICROSERVICIO: 'employee-service', se manejara en la ruta del 'GITHUB': '/employee-service.properties' 
+- CONSIDERAR que los DNS, deben estar registrados en el archivo HOST del S.O. 
+- El 'ARCHIVO DE CONFIGURACION' para el MICROSERVICIO: 'employee-service', se manejara configurara dentro del SCRIPT: [2_employee-service_[Deployment].yml] 
+- Dentro del archivo: 'DOCKERFILE' se estan manejando 'VARIABLES DE ENTORNO' para algunas configuraciones.   
 
 Los LINK [GET] son:
 

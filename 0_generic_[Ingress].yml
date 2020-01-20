@@ -1,0 +1,85 @@
+
+#[INGRESS]
+#0_generic_[Ingress].yml
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  namespace: default
+spec:
+  rules:
+#--------------------------------------------------------#
+#----------- CONFIGURACION [employee-service] -----------#
+#--------------------------------------------------------#
+  - host: capacitacion.microservicios.employee
+    http:
+      paths:
+      - path: "/employeeservice/get"
+        backend:
+          serviceName: employee-service
+          servicePort: 8080
+  - host: capacitacion.microservicios.employee
+    http:
+      paths:
+      - path: "/employeeservice/post"
+        backend:
+          serviceName: employee-service
+          servicePort: 8080
+#--------------------------------------------------------#
+#---------- CONFIGURACION [department-service] ----------#
+#--------------------------------------------------------#
+  - host: capacitacion.microservicios.department
+    http:
+      paths:
+      - path: "/departmentservice/get"
+        backend:
+          serviceName: department-service
+          servicePort: 8080
+  - host: capacitacion.microservicios.employee
+    http:
+      paths:
+      - path: "/departmentservice/post"
+        backend:
+          serviceName: department-service
+          servicePort: 8080          
+#--------------------------------------------------------#
+#--------- CONFIGURACION [organization-service] ---------#
+#--------------------------------------------------------# 
+  - host: capacitacion.microservicios.organization
+    http:
+      paths:
+      - path: "/organizationservice/get"
+        backend:
+          serviceName: organization-service
+          servicePort: 8080
+  - host: capacitacion.microservicios.employee
+    http:
+      paths:
+      - path: "/organizationservice/post"
+        backend:
+          serviceName: organization-service
+          servicePort: 8080 
+#--------------------------------------------------------#
+#---------- CONFIGURACION [boot-admin-server] -----------#
+#--------------------------------------------------------# 
+  - host: capacitacion.microservicios.boot-admin-server
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: boot-admin-server
+          servicePort: 8080
+#--------------------------------------------------------#
+#------------ CONFIGURACION [zipkin-server] -------------#
+#--------------------------------------------------------# 
+  - host: capacitacion.microservicios.zipkin-server
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: zipkin-server
+          servicePort: 9411
+      
+      
+      

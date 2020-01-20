@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 	    @Value( "${ws.nombre.servicio}" )             //ACCESO: al valor REMOTO [ws.nombre.servicio]
 	    public String nombreServicio;
 	 
-		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01:]
+		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01}]
 		public String valor01; 
 	    
 		

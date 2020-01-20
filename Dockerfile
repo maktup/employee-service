@@ -33,8 +33,8 @@ ENV APP_HOME /app
 
 #------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#
 ENV NOMBRE_MICROSERVICIO=employee-service
-ENV BOOTADMIN_USUARIO=admin
-ENV BOOTADMIN_PASSWORD=admin
+#ENV BOOTADMIN_USUARIO=admin   [Manejado con SECRETs]
+#ENV BOOTADMIN_PASSWORD=admin  [Manejado con SECRETs]
 ENV BOOTADMIN_URL=http://capacitacion.microservicios.boot-admin-server
 ENV ZIPKIN_URL=http://capacitacion.microservicios.zipkin-server
 #------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#

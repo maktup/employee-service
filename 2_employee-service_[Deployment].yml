@@ -16,6 +16,20 @@ spec:
     matchLabels:
       app: microservicio-employee-service
       version: v1.0.0
+    spec:
+      containers:
+        - env:
+            #CONFIGURACION DE 'SECRETs': 
+            - name: BOOTADMIN_USUARIO
+              valueFrom:
+                configMapKeyRef:
+                  key: BOOTADMIN_USUARIO
+                  name: employee-service-secret
+            - name: BOOTADMIN_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: BOOTADMIN_PASSWORD
+                  name: employee-service-secret    
   template:
     metadata:
       labels:

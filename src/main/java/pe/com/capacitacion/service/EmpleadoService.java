@@ -5,8 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service; 
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Service;  
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import pe.com.capacitacion.bean.Auditoria;
 import pe.com.capacitacion.bean.ConfigurationData_01;
@@ -48,21 +47,11 @@ import pe.com.capacitacion.util.Constantes;
 	    * @return ResponseMsg
 	    **/ 
 		@HystrixCommand( fallbackMethod = "lanzarExceptionWS" )   //ANTE UNA FALLA LANZARPA EL MÉTODO: [lanzarExceptionWS].
-		public ResponseMsg agregarEmpleadoService( @RequestBody Empleado empleado ){
+		public ResponseMsg agregarEmpleadoService( Empleado empleado ){
 			   LOGGER.info( "-----> Empleado 'agregarEmpleadoService': {}", empleado );
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg(); 
-			   
-			   String vNombreServicio  = this.constantes.nombreServicio; 
-			   String vValor_01        = this.constantes.valor01; 
-			   String vNombres         = this.objConfigurationData01.getNombres();
-			   String vDni             = this.objConfigurationData01.getDni(); 		
-			   String vDnsEmployee     = this.objConfigurationData02.getEmployee(); 
-			   String vDnsDepartment   = this.objConfigurationData02.getDepartment(); 
-			   String vDnsOrganization = this.objConfigurationData02.getOrganization(); 
-			   
-			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
-			   LOGGER.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			   
 			   this.objRepositorio.agregarEmpleado( empleado ); 
 			   Auditoria objAuditoria = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 
@@ -83,17 +72,7 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "-----> Empleado 'consultarEmpleadosAllService'" );
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg(); 
-			   
-			   String vNombreServicio  = this.constantes.nombreServicio; 
-			   String vValor_01        = this.constantes.valor01; 
-			   String vNombres         = this.objConfigurationData01.getNombres();
-			   String vDni             = this.objConfigurationData01.getDni(); 		
-			   String vDnsEmployee     = this.objConfigurationData02.getEmployee(); 
-			   String vDnsDepartment   = this.objConfigurationData02.getDepartment(); 
-			   String vDnsOrganization = this.objConfigurationData02.getOrganization(); 
-			   
-			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
-			   LOGGER.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" );  
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );  
 			  
 			   List<Empleado> listaEmpleados = this.objRepositorio.consultarEmpleadosAll();
 			   Auditoria      objAuditoria   = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 
@@ -115,12 +94,7 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "-----> Departamento 'consultarEmpleadosPorIdService': id={}", id );
 			   
 		       ResponseMsg objResponseMsg = new ResponseMsg(); 
-			   
-			   String vNombreServicio = this.constantes.nombreServicio; 
-			   String vValor_01       = this.constantes.valor01; 
-			   String vNombres        = this.objConfigurationData01.getNombres();
-			   String vDni            = this.objConfigurationData01.getDni(); 		
-			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			
 			   Empleado   objEmpleado  = this.objRepositorio.consultarEmpleadosPorId( id );   
 		       Auditoria  objAuditoria = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK );
@@ -145,12 +119,7 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "-----> Departamento 'consultarEmpleadosPorDepartamentoService': departmentId={}", departmentId );
 			   
 		       ResponseMsg objResponseMsg = new ResponseMsg(); 
-		    
-			   String vNombreServicio = this.constantes.nombreServicio; 
-			   String vValor_01       = this.constantes.valor01; 
-			   String vNombres        = this.objConfigurationData01.getNombres();
-			   String vDni            = this.objConfigurationData01.getDni(); 		
-			   LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			   
 			   List<Empleado> listaEmpleados = this.objRepositorio.consultarEmpleadosPorDepartamento( departmentId );
 			   Auditoria      objAuditoria   = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK );
@@ -162,5 +131,26 @@ import pe.com.capacitacion.util.Constantes;
 		       return objResponseMsg; 
 		}	
  
+	   /**
+	    * mostrarVariablesEntorno
+	    * @param constantesParam
+	    * @param objConfigurationData01Param
+	    * @param objConfigurationData02Param
+	    **/
+        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param, ConfigurationData_02 objConfigurationData02Param ){
+        	    LOGGER.info( "-----> Departamento 'mostrarVariablesEntorno'" );
+        	    
+			    String vNombreServicio  = constantesParam.nombreServicio; 
+			    String vValor_01        = constantesParam.valor01; 
+			    String vNombres         = objConfigurationData01Param.getNombres();
+			    String vDni             = objConfigurationData01Param.getDni(); 		
+			    String vDnsEmployee     = objConfigurationData02Param.getEmployee(); 
+			    String vDnsDepartment   = objConfigurationData02Param.getDepartment(); 
+			    String vDnsOrganization = objConfigurationData02Param.getOrganization();  
+			   
+			    LOGGER.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
+			    LOGGER.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+        }
+		
  }
  

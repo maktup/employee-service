@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.com.capacitacion.bean.Empleado;
@@ -26,7 +27,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 		private EmpleadoService objEmpleadoService; 
 		 
 		@PostMapping( "/post/empleados" )
-		public ResponseMsg agregarEmpleado( Empleado empleado ){ 
+		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
 			   
 			   //Ejecutar:  
@@ -40,11 +41,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 			   
 			   
 			   //Ejecutar: 
-			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService();
-			   
-			   //String vValorKUBERNETES = System.getenv().getOrDefault( "GREETING_PREFIX", "Hi" ); 
-			   //LOGGER.info( "==============> vValorKUBERNETES: " + vValorKUBERNETES );
-			   
+			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService(); 
 			   return objResponseMsg; 
 		}
 		

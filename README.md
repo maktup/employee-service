@@ -19,7 +19,8 @@ Los LINK [GET] son:
  
  
 DETALLE:
--------
- 
-Para DETALLES del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 'http://capacitacion.microservicios.employee/actuator'
+------- 
+- Para DETALLES del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 'http://capacitacion.microservicios.employee/actuator'
+
+- Para acceder a 'PHOMETHEUS' acceder por medio de ACTUATOR asi: 'http://capacitacion.microservicios.employee/actuator/prometheus'  
 

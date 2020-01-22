@@ -119,8 +119,16 @@
 	    <!-- IMPORTANTE: [MICROMETER] -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
+			<artifactId>micrometer-spring-legacy</artifactId>
+			<version>1.0.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+  
  
 	    <!-- IMPORTANTE: [JAEGER] -->
 <dependency>

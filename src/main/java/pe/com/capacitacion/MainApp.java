@@ -44,5 +44,21 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 				
 				return objRepository;
 		}	
-		
+ /*
+		@Bean
+		public Tracer tracer() {
+	        SamplerConfiguration samplerConfig = SamplerConfiguration.fromEnv()
+	                .withType(ConstSampler.TYPE)
+	                .withParam(1);
+
+	        ReporterConfiguration reporterConfig = ReporterConfiguration.fromEnv()
+	                .withLogSpans(true);
+
+	        Configuration config = new Configuration( "frontend-demo" )
+	                //.withSampler(samplerConfig)
+	                .withReporter(reporterConfig);
+
+	        return config.getTracer();
+	    }	
+		*/
  }

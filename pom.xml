@@ -122,6 +122,20 @@
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
  
+	    <!-- IMPORTANTE: [JAEGER] -->
+<dependency>
+  <groupId>io.opentracing.contrib</groupId>
+  <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+  <version>0.3.2</version>
+</dependency>
+
+<dependency>
+  <groupId>io.jaegertracing</groupId>
+  <artifactId>jaeger-core</artifactId>
+  <version>0.34.0</version>
+</dependency>
+  
+ 
 		<!-- OTROS -->	
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>

@@ -5,7 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Bean; 
+import io.jaegertracing.Configuration;
+import io.jaegertracing.Configuration.ReporterConfiguration;
+import io.jaegertracing.Configuration.SamplerConfiguration;
+import io.jaegertracing.internal.samplers.ConstSampler;
+import io.opentracing.*;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.repository.EmpleadoRepository;
 
@@ -44,21 +49,23 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 				
 				return objRepository;
 		}	
- /*
+ 
 		@Bean
-		public Tracer tracer() {
+		public Tracer tracer(){
 	        SamplerConfiguration samplerConfig = SamplerConfiguration.fromEnv()
-	                .withType(ConstSampler.TYPE)
-	                .withParam(1);
+	                .withType( ConstSampler.TYPE )
+	                .withParam( 1 );
 
 	        ReporterConfiguration reporterConfig = ReporterConfiguration.fromEnv()
-	                .withLogSpans(true);
+	                .withLogSpans( true );
 
-	        Configuration config = new Configuration( "frontend-demo" )
-	                //.withSampler(samplerConfig)
-	                .withReporter(reporterConfig);
+	        Configuration config = new Configuration( "frontend-demo" ) 
+	                .withSampler( samplerConfig )
+	                .withReporter( reporterConfig );
 
 	        return config.getTracer();
 	    }	
-		*/
+	 
  }
+
+ 

@@ -162,27 +162,19 @@
 			<version>0.2.1</version>
 		</dependency>
         </dependency>   -->
-        
-		<dependency>
-		    <groupId>io.opentracing.contrib</groupId>
-		    <artifactId>opentracing-spring-web-starter</artifactId>
-		    <version>${opentracing.spring.web.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.opentracing.contrib</groupId>
-		    <artifactId>opentracing-jdbc</artifactId>
-		    <version>${opentracing.jdbc.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.opentracing.contrib</groupId>
-		    <artifactId>opentracing-spring-tracer-configuration-starter</artifactId>
-		    <version>${opentracing.spring.configuration.starter.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.opentracing.contrib</groupId>
-		    <artifactId>opentracing-spring-jaeger-starter</artifactId>
-		    <version>${opentracing.spring.jaeger.starter.version}</version>
-		</dependency>
+ 
+ 
+	    <dependency>
+	        <groupId>io.opentracing.contrib</groupId>
+	        <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+	        <version>0.3.2</version>
+	    </dependency>
+	
+	    <dependency>
+	        <groupId>io.jaegertracing</groupId>
+	        <artifactId>jaeger-core</artifactId>
+	        <version>0.34.0</version>
+	    </dependency>
  
  
 		<!-- OTROS -->	

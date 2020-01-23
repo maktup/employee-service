@@ -22,8 +22,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  public class MainApp{
-  
-		/* Configure sender host and port details */
+ 
 	    private static final int    JAEGER_PORT = 31692;
 	    private static final String JAEGER_HOST = "http://capacitacion.microservicios.jaeger-server"; 
 	 
@@ -55,26 +54,20 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 		}	
  
 	    @Bean
-	    public Tracer getTracer(){
-	           System.out.println( "============>: [getTracer] " );
-	           
+	    public Tracer jaegerTracer(){
+	    	   System.out.println( "============>: [getTracer] " ); 
+	    	   System.out.println( "URL: " + JAEGER_HOST + ":" + JAEGER_PORT ); 
+	    	   
 	           Tracer objTracer = null; 
+	           SamplerConfiguration  objSampleConfiguration = SamplerConfiguration.fromEnv().withType( ProbabilisticSampler.TYPE ).withParam( 1 );
+	           SenderConfiguration  objSenderConfig         = SenderConfiguration.fromEnv().withAgentHost( JAEGER_HOST ).withAgentPort( JAEGER_PORT );	
+	           ReporterConfiguration objReporterConfig      = ReporterConfiguration.fromEnv().withLogSpans( true ).withSender( objSenderConfig );	  
+	           Configuration         objConfig              = new Configuration( "spring-boot" ).withSampler( objSampleConfiguration ).withReporter( objReporterConfig );     
 	           
-	           try{
-	        	   SamplerConfiguration  objSampleConfiguration = SamplerConfiguration.fromEnv().withType( ProbabilisticSampler.TYPE ).withParam( 1 );
-	        	   SenderConfiguration   objSenderConfig        = Configuration.SenderConfiguration.fromEnv().withAgentHost( JAEGER_HOST ).withAgentPort( JAEGER_PORT );	    
-	        	   ReporterConfiguration objReporterConfig      = Configuration.ReporterConfiguration.fromEnv().withLogSpans( true ).withSender( objSenderConfig );	
-	        	   Configuration         objConfig              = new Configuration( "Service_Name" ).withSampler( objSampleConfiguration ).withReporter( objReporterConfig );        
-	        	   
-	        	   objTracer = objConfig.getTracer(); 
-	           }
-	           catch( Exception e ){
-	        	      e.printStackTrace();
-	           } 
-	           
+	           objTracer = objConfig.getTracer(); 
 	           return objTracer;
 	    }
-	    
+ 
  }
 
  

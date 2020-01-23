@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean; 
 import io.jaegertracing.Configuration;
-import io.jaegertracing.Configuration.SenderConfiguration;
+import io.jaegertracing.Configuration.*;
 import io.jaegertracing.internal.samplers.ProbabilisticSampler;
 import io.opentracing.Tracer;
 import pe.com.capacitacion.bean.Empleado;
@@ -53,29 +53,28 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 				
 			   return objRepository;
 		}	
-
-	
-	    /* End */
+ 
 	    @Bean
-	    public Tracer getTracer() {
-	
-	        Configuration.SamplerConfiguration samplerConfig = Configuration.SamplerConfiguration.fromEnv()
-	                .withType(ProbabilisticSampler.TYPE).withParam(1);
-	
-	            /* Update default sender configuration with custom host and port */
-	            SenderConfiguration senderConfig = Configuration.SenderConfiguration.fromEnv()
-	                    .withAgentHost( JAEGER_HOST ) 
-	                    .withAgentPort( JAEGER_PORT );
-	        /* End */ 
-	        Configuration.ReporterConfiguration reporterConfig = Configuration.ReporterConfiguration.fromEnv()
-	                .withLogSpans(true)
-	                .withSender(senderConfig);
-	
-	        Configuration config = new Configuration( "Service_Name" ).withSampler( samplerConfig )
-	                .withReporter(reporterConfig);
-	
-	        return config.getTracer();
+	    public Tracer getTracer(){
+	           System.out.println( "============>: [getTracer] " );
+	           
+	           Tracer objTracer = null; 
+	           
+	           try{
+	        	   SamplerConfiguration  objSampleConfiguration = SamplerConfiguration.fromEnv().withType( ProbabilisticSampler.TYPE ).withParam( 1 );
+	        	   SenderConfiguration   objSenderConfig        = Configuration.SenderConfiguration.fromEnv().withAgentHost( JAEGER_HOST ).withAgentPort( JAEGER_PORT );	    
+	        	   ReporterConfiguration objReporterConfig      = Configuration.ReporterConfiguration.fromEnv().withLogSpans( true ).withSender( objSenderConfig );	
+	        	   Configuration         objConfig              = new Configuration( "Service_Name" ).withSampler( objSampleConfiguration ).withReporter( objReporterConfig );        
+	        	   
+	        	   objTracer = objConfig.getTracer(); 
+	           }
+	           catch( Exception e ){
+	        	      e.printStackTrace();
+	           } 
+	           
+	           return objTracer;
 	    }
+	    
  }
 
  

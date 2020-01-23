@@ -1,5 +1,5 @@
 #FROM maven:3-jdk-8 as CONSTRUCTOR
-FROM oracle/graalvm-ce:1.0.0-rc16 as CONSTRUCTOR
+FROM oracle/graalvm-ce:1.0.0-rc8 as CONSTRUCTOR
 
 #1. CREA DIRECTORIO 'build':  
 RUN mkdir -p /build
@@ -22,7 +22,7 @@ RUN mvn clean package
 #//----------------------------------------------------------------//#
 
 #FROM openjdk:8-jdk-slim as RUNTIME
-FROM oracle/graalvm-ce:1.0.0-rc16 as RUNTIME
+FROM oracle/graalvm-ce:1.0.0-rc8 as RUNTIME
 
 #7. DOCUMENTANDO: 
 MAINTAINER cesar guerra cesarricardo_guerra19@hotmail.com

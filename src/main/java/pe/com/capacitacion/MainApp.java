@@ -24,8 +24,8 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
  public class MainApp{
   
 		/* Configure sender host and port details */
-	    private static final int    JAEGER_PORT = 32326;
-	    private static final String JAEGER_HOST = "http://capacitacion.microservicios.prometheus-server"; 
+	    private static final int    JAEGER_PORT = 31692;
+	    private static final String JAEGER_HOST = "http://capacitacion.microservicios.jaeger-server"; 
 	 
 	    
 	    public static void main( String[] argumentos ){

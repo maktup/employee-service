@@ -1,6 +1,5 @@
 package pe.com.capacitacion;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -8,10 +7,9 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean; 
 import io.jaegertracing.Configuration;
-import io.jaegertracing.Configuration.ReporterConfiguration;
-import io.jaegertracing.Configuration.SamplerConfiguration;
-import io.jaegertracing.internal.samplers.ConstSampler;
-import io.opentracing.*;
+import io.jaegertracing.Configuration.SenderConfiguration;
+import io.jaegertracing.internal.samplers.ProbabilisticSampler;
+import io.opentracing.Tracer;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.repository.EmpleadoRepository;
 
@@ -25,6 +23,11 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  public class MainApp{
   
+		/* Configure sender host and port details */
+	    private static final int    JAEGER_PORT = 32326;
+	    private static final String JAEGER_HOST = "http://capacitacion.microservicios.prometheus-server"; 
+	 
+	    
 	    public static void main( String[] argumentos ){
 		 	   SpringApplication.run( MainApp.class, argumentos );
 	    }
@@ -50,23 +53,29 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 				
 			   return objRepository;
 		}	
-     /*
-		@Bean
-		public Tracer tracer(){
-	        SamplerConfiguration samplerConfig = SamplerConfiguration.fromEnv()
-	                .withType( ConstSampler.TYPE )
-	                .withParam( 1 );
 
-	        ReporterConfiguration reporterConfig = ReporterConfiguration.fromEnv()
-	                .withLogSpans( true );
-
-	        Configuration config = new Configuration( "frontend-demo" ) 
-	                .withSampler( samplerConfig )
-	                .withReporter( reporterConfig );
-
+	
+	    /* End */
+	    @Bean
+	    public Tracer getTracer() {
+	
+	        Configuration.SamplerConfiguration samplerConfig = Configuration.SamplerConfiguration.fromEnv()
+	                .withType(ProbabilisticSampler.TYPE).withParam(1);
+	
+	            /* Update default sender configuration with custom host and port */
+	            SenderConfiguration senderConfig = Configuration.SenderConfiguration.fromEnv()
+	                    .withAgentHost( JAEGER_HOST ) 
+	                    .withAgentPort( JAEGER_PORT );
+	        /* End */ 
+	        Configuration.ReporterConfiguration reporterConfig = Configuration.ReporterConfiguration.fromEnv()
+	                .withLogSpans(true)
+	                .withSender(senderConfig);
+	
+	        Configuration config = new Configuration( "Service_Name" ).withSampler( samplerConfig )
+	                .withReporter(reporterConfig);
+	
 	        return config.getTracer();
-	    }	
-      */
+	    }
  }
 
  

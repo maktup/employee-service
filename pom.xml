@@ -25,8 +25,13 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-boot-admin.version>2.0.3</spring-boot-admin.version>
-	</properties>
  
+	    <opentracing.spring.web.version>0.3.4</opentracing.spring.web.version>
+	    <opentracing.jdbc.version>0.0.12</opentracing.jdbc.version>
+	    <opentracing.spring.configuration.starter.version>0.1.0</opentracing.spring.configuration.starter.version>
+	    <opentracing.spring.jaeger.starter.version>0.2.2</opentracing.spring.jaeger.starter.version>
+	</properties>
+	 
 	<dependencyManagement>
 		<dependencies>
 		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
@@ -150,13 +155,35 @@
       </dependency>
   
   -->
-  
+     <!--
 		<dependency>
 			<groupId>io.opentracing.contrib</groupId>
 			<artifactId>opentracing-spring-jaeger-web-starter</artifactId>
 			<version>0.2.1</version>
 		</dependency>
-  
+        </dependency>   -->
+        
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-web-starter</artifactId>
+		    <version>${opentracing.spring.web.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-jdbc</artifactId>
+		    <version>${opentracing.jdbc.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-tracer-configuration-starter</artifactId>
+		    <version>${opentracing.spring.configuration.starter.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-jaeger-starter</artifactId>
+		    <version>${opentracing.spring.jaeger.starter.version}</version>
+		</dependency>
+ 
  
 		<!-- OTROS -->	
 		<dependency>

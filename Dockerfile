@@ -36,6 +36,7 @@ ENV NOMBRE_MICROSERVICIO=employee-service
 #ENV BOOTADMIN_USUARIO=admin   [Manejado con SECRETs]
 #ENV BOOTADMIN_PASSWORD=admin  [Manejado con SECRETs]
 ENV BOOTADMIN_URL=http://capacitacion.microservicios.boot-admin-server
+ENV SERVICE_DNS_URL=http://capacitacion.microservicios.employee
 ENV ZIPKIN_URL=http://capacitacion.microservicios.zipkin-server
 #------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#
 

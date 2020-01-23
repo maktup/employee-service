@@ -1,4 +1,15 @@
-FROM maven:3-jdk-8 as CONSTRUCTOR
+#-------------- [PESOS DE IMAGENES] -----------#
+#  maven:3-jdk-8                        500MB 
+#  maven:3-jdk-8-alpine                 122MB 
+#  openjdk:8                            488MB
+#  openjdk:8-slim                       284MB
+#  openjdk:8-alpine                     105MB
+#  openjdk:8-jdk-slim                   284MB 
+#  openjdk:8-jdk-alpine                 105MB 
+#  adoptopenjdk/openjdk8:alpine-slim    90.2MB
+#-------------- [PESOS DE IMAGENES] -----------#
+
+FROM maven:3-jdk-8-alpine as CONSTRUCTOR 
 
 #1. CREA DIRECTORIO 'build':  
 RUN mkdir -p /build
@@ -20,7 +31,7 @@ RUN mvn clean package
 
 #//----------------------------------------------------------------//#
 
-FROM openjdk:8-jdk-slim as RUNTIME
+FROM adoptopenjdk/openjdk8:alpine-slim as RUNTIME
 
 #7. DOCUMENTANDO: 
 MAINTAINER cesar guerra cesarricardo_guerra19@hotmail.com

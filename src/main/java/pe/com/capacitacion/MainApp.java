@@ -1,5 +1,6 @@
 package pe.com.capacitacion;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -23,7 +24,11 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  public class MainApp{
-	
+ 
+	    @Autowired
+	    private Tracer tracer;
+	    
+	 
 	    public static void main( String[] argumentos ){
 		 	   SpringApplication.run( MainApp.class, argumentos );
 	    }
@@ -34,20 +39,20 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 	    **/   
 		@Bean
 		public EmpleadoRepository repository(){
-				EmpleadoRepository objRepository = new EmpleadoRepository(); 
+			   EmpleadoRepository objRepository = new EmpleadoRepository(); 
 				
-				objRepository.agregarEmpleado( new Empleado( 1L, "John Smith",      34, "Analyst",   1L ) );
-				objRepository.agregarEmpleado( new Empleado( 1L, "Darren Hamilton", 37, "Manager",   1L ) );
-				objRepository.agregarEmpleado( new Empleado( 1L, "Tom Scott",       26, "Developer", 1L ) );
-				objRepository.agregarEmpleado( new Empleado( 1L, "Anna London",     39, "Analyst",   2L ) );		
-				objRepository.agregarEmpleado( new Empleado( 1L, "Patrick Dempsey", 27, "Developer", 2L ) );
-				objRepository.agregarEmpleado( new Empleado( 2L, "Kevin Price",     38, "Developer", 3L ) );		
-				objRepository.agregarEmpleado( new Empleado( 2L, "Ian Scott",       34, "Developer", 3L ) );
-				objRepository.agregarEmpleado( new Empleado( 2L, "Andrew Campton",  30, "Manager",   3L ) );
-				objRepository.agregarEmpleado( new Empleado( 2L, "Steve Franklin",  25, "Developer", 4L ) );
-				objRepository.agregarEmpleado( new Empleado( 2L, "Elisabeth Smith", 30, "Developer", 4L ) );
+			   objRepository.agregarEmpleado( new Empleado( 1L, "John Smith",      34, "Analyst",   1L ) );
+			   objRepository.agregarEmpleado( new Empleado( 1L, "Darren Hamilton", 37, "Manager",   1L ) );
+			   objRepository.agregarEmpleado( new Empleado( 1L, "Tom Scott",       26, "Developer", 1L ) );
+			   objRepository.agregarEmpleado( new Empleado( 1L, "Anna London",     39, "Analyst",   2L ) );		
+			   objRepository.agregarEmpleado( new Empleado( 1L, "Patrick Dempsey", 27, "Developer", 2L ) );
+			   objRepository.agregarEmpleado( new Empleado( 2L, "Kevin Price",     38, "Developer", 3L ) );		
+			   objRepository.agregarEmpleado( new Empleado( 2L, "Ian Scott",       34, "Developer", 3L ) );
+			   objRepository.agregarEmpleado( new Empleado( 2L, "Andrew Campton",  30, "Manager",   3L ) );
+			   objRepository.agregarEmpleado( new Empleado( 2L, "Steve Franklin",  25, "Developer", 4L ) );
+			   objRepository.agregarEmpleado( new Empleado( 2L, "Elisabeth Smith", 30, "Developer", 4L ) );
 				
-				return objRepository;
+			   return objRepository;
 		}	
  
 		@Bean
@@ -65,7 +70,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 
 	        return config.getTracer();
 	    }	
-	 
+
  }
 
  

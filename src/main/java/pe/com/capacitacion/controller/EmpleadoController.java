@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.opentracing.Scope;
+import io.opentracing.Tracer;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.bean.ResponseMsg;
 import pe.com.capacitacion.service.EmpleadoService;
@@ -26,6 +29,10 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
 		 
+	    @Autowired
+	    private Tracer tracer;
+		
+		
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
@@ -63,6 +70,39 @@ import pe.com.capacitacion.service.EmpleadoService;
 			   return objResponseMsg; 
 		}
  
+		//-----------------------------------------------------------------------------------------------------// 
+		
+		 
+	    /**
+	     * @return "heads" or "tails" to emulate a coin flip
+	     */
+	    @RequestMapping("/flip")
+	    public String flipACoin() throws Exception {
+	    	LOGGER.info( "=====================>: flipACoin" );
+	    	
+			// Emulate the coin flip
+			String flipResult = trueWithProbability(.50) ? "heads" : "tails";
+	
+			// Tag the current Span with the result
+			tracer.activeSpan().setTag( "flipResult", flipResult );
+	
+			return flipResult;
+	    }
+
+	    /**
+	     * Returns false based on the passed in probability. 
+	     * @param probability - Expressed as a number between 0 and 1
+	     * @return
+	     */
+	    private boolean trueWithProbability(double probability) {
+	    	LOGGER.info( "=====================>: trueWithProbability" );
+	    	
+			// Create a new subspan called 'calculateOdds' that surrounds this logic 
+			try (Scope scope = tracer.buildSpan("calculateOdds").startActive(true)) {
+			    return Math.random() <= probability;
+			} // By using the Java try-with-resources convention, the subspan is auto-closed
+	    } 
+		
  }
 
  

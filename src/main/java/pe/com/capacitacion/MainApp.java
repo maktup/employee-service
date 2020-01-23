@@ -24,11 +24,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  public class MainApp{
- 
-	    @Autowired
-	    private Tracer tracer;
-	    
-	 
+  
 	    public static void main( String[] argumentos ){
 		 	   SpringApplication.run( MainApp.class, argumentos );
 	    }
@@ -54,7 +50,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 				
 			   return objRepository;
 		}	
- 
+     /*
 		@Bean
 		public Tracer tracer(){
 	        SamplerConfiguration samplerConfig = SamplerConfiguration.fromEnv()
@@ -70,7 +66,7 @@ import pe.com.capacitacion.repository.EmpleadoRepository;
 
 	        return config.getTracer();
 	    }	
-
+      */
  }
 
  

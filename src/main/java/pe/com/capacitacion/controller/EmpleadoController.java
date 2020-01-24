@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.bean.ResponseMsg;
 import pe.com.capacitacion.service.EmpleadoService;
+import pe.com.capacitacion.util.UtilJeager;
 
 /**
  * EmpleadoController
@@ -19,7 +20,7 @@ import pe.com.capacitacion.service.EmpleadoService;
  **/
  @RestController
  @RequestMapping( "/employeeservice" )
- public class EmpleadoController{
+ public class EmpleadoController extends UtilJeager{
 	
 		private static final Logger LOGGER = LoggerFactory.getLogger( EmpleadoController.class );
 		
@@ -30,6 +31,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
+			   this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar:  
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.agregarEmpleadoService( empleado ); 
@@ -39,7 +41,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/empleados" )
 		public ResponseMsg consultarEmpleadosAll(){
 			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" );
-			   
+			   this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService(); 
@@ -49,6 +51,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/empleados/{id}" )
 		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id );
+			   this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id );
@@ -58,13 +61,12 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
 		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId );
+			   this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( departmentId );
 			   return objResponseMsg; 
 		}
- 
-		//-----------------------------------------------------------------------------------------------------// 
  
  }
 

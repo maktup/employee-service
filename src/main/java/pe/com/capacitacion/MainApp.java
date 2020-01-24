@@ -1,39 +1,22 @@
 package pe.com.capacitacion;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean; 
-import io.jaegertracing.Configuration;
-import io.jaegertracing.Configuration.ReporterConfiguration;
-import io.jaegertracing.Configuration.SamplerConfiguration;
-import io.jaegertracing.Configuration.SenderConfiguration;
-import io.jaegertracing.samplers.ProbabilisticSampler;
-import io.opentracing.Tracer;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.repository.EmpleadoRepository;
-import pe.com.capacitacion.util.Constantes;
-
+ 
 /**
  * MainApp
  * @author cguerra
  **/
  @SpringBootApplication
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
- @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
- @SuppressWarnings( "deprecation" )
+ @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT' 
  public class MainApp{
-        
-		private static final Logger LOGGER = LoggerFactory.getLogger( MainApp.class );
-	 
-	    @Autowired
-	    private Constantes constantes; 
-	    
-	    
+ 
 	    public static void main( String[] argumentos ){
 		 	   SpringApplication.run( MainApp.class, argumentos );
 	    }
@@ -59,24 +42,6 @@ import pe.com.capacitacion.util.Constantes;
 				
 			   return objRepository;
 		}	
- 
-	   /**
-	    * jaegerAlertTracer	
-	    * @return Tracer
-	    **/ 
-		@Bean
-	    public Tracer jaegerAlertTracer(){
-	    	   LOGGER.info( "============>: [jaegerAlertTracer] " ); 
-	    	   LOGGER.info( "- URL: [" + this.constantes.jeagerUrlServer + "]" ); 
-	  
-	           SamplerConfiguration   objSamplerConfig  = new SamplerConfiguration( ProbabilisticSampler.TYPE, 1);
-	           SenderConfiguration    objSenderConfig   = SenderConfiguration.fromEnv().withEndpoint( this.constantes.jeagerUrlServer );
-	           ReporterConfiguration  objReporterConfig = ReporterConfiguration.fromEnv().withLogSpans(true).withSender( objSenderConfig );
-	           Configuration          objConfig         = new Configuration( this.constantes.nombreMicroServicio ).withSampler( objSamplerConfig ).withReporter( objReporterConfig );
-	           Tracer                 objTracer         = objConfig.getTracer();
-	           
-	           return objTracer;
-	    }
  
  }
 

@@ -27,7 +27,11 @@ import pe.com.capacitacion.util.UtilJeager;
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
  
-		
+	   /**
+	    * agregarEmpleado	
+	    * @param  empleado
+	    * @return ResponseMsg
+	    **/
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
@@ -38,6 +42,10 @@ import pe.com.capacitacion.util.UtilJeager;
 			   return objResponseMsg; 
 		}
 		
+	   /**
+	    * consultarEmpleadosAll	
+	    * @return ResponseMsg
+	    **/
 		@GetMapping( "/get/empleados" )
 		public ResponseMsg consultarEmpleadosAll(){
 			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" );
@@ -48,6 +56,11 @@ import pe.com.capacitacion.util.UtilJeager;
 			   return objResponseMsg; 
 		}
 		
+	   /**
+	    * consultarEmpleadosPorId	
+	    * @param  id
+	    * @return ResponseMsg
+	    **/
 		@GetMapping( "/get/empleados/{id}" )
 		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id );
@@ -57,7 +70,12 @@ import pe.com.capacitacion.util.UtilJeager;
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id );
 			   return objResponseMsg; 
 		}
-		 
+		
+	   /**
+	    * consultarEmpleadosPorDepartamento	
+	    * @param  departmentId
+	    * @return ResponseMsg
+	    **/
 		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
 		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
 			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId );

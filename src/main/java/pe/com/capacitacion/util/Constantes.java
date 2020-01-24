@@ -26,7 +26,14 @@ import org.springframework.stereotype.Component;
 	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
 	    public String ingressOrganization;
 	    
-		
+	    
+	    @Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    public String jeagerUrlServer;
+        
+	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
+	    public String nombreMicroServicio;
+ 
+	    
 		public static String INSTANCIA_EUREKA_01 = "EMPLOYEE-SERVICE"; 
 		public static String INSTANCIA_EUREKA_02 = "DEPARTMENT-SERVICE";  
 		public static String INSTANCIA_EUREKA_03 = "ORGANIZATION-SERVICE";
@@ -43,3 +50,5 @@ import org.springframework.stereotype.Component;
 		public String MSJ_APP_OK  = "PROCESO OK";
 		
  }
+
+ 

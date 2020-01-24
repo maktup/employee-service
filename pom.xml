@@ -127,56 +127,20 @@
 			<artifactId>micrometer-registry-prometheus</artifactId>
 			<version>1.0.3</version>
 		</dependency>
-  
- 
-	    <!-- IMPORTANTE: [JAEGER 
-		<dependency>
-		  <groupId>io.opentracing.contrib</groupId>
-		  <artifactId>opentracing-spring-web-autoconfigure</artifactId>
-		  <version>0.3.2</version>
-		</dependency>
-		
-		<dependency>
-		  <groupId>io.jaegertracing</groupId>
-		  <artifactId>jaeger-core</artifactId>
-		  <version>0.34.0</version>
-		</dependency>
-   -->
-  
-   <!--
-      <dependency>
-        <groupId>io.opentracing</groupId>
-        <artifactId>opentracing-api</artifactId>
-      </dependency>
-      
-      <dependency>
-        <groupId>io.jaegertracing</groupId>
-        <artifactId>jaeger-client</artifactId>
-      </dependency>
-  
-  -->
-     <!--
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-spring-jaeger-web-starter</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-        </dependency>   -->
- 
- 
-	    <dependency>
-	        <groupId>io.opentracing.contrib</groupId>
-	        <artifactId>opentracing-spring-web-autoconfigure</artifactId>
-	        <version>0.3.2</version>
-	    </dependency>
-	
+   
+		<!-- IMPORTANTE: [JAEGER- CLIENT] -->		
 	    <dependency>
 	        <groupId>io.jaegertracing</groupId>
 	        <artifactId>jaeger-core</artifactId>
-	        <version>0.34.0</version>
+	        <version>0.27.0</version>
 	    </dependency>
- 
- 
+	    
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+		    <version>0.3.2</version>
+		</dependency>
+  
 		<!-- OTROS -->	
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>

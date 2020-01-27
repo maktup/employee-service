@@ -70,6 +70,10 @@ VOLUME $APP_HOME/config
 #15. CREANDO 'VOLUME' PARA 'LOGs':  
 VOLUME $APP_HOME/log
 
+#------------------ EXTRA: configuracion de 'LOGs' ------------------#
+ENV RUTA_LOG=$APP_HOME/log
+#------------------ EXTRA: configuracion de 'LOGs' ------------------#
+
 #16. DEFINIR UBICACION: 
 WORKDIR $APP_HOME
 

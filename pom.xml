@@ -143,9 +143,10 @@
 		    <version>2.8.6</version>
 		</dependency>
 				
- 		<dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>		
 				
 		<dependency>

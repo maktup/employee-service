@@ -29,6 +29,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          #--------------------------#  
+          volumeMounts:
+          - mountPath: /app/log
+            name: volumen-logs
+      volumes:
+        - name: volumen-logs
+          emptyDir: {}   
+          #--------------------------#   
           env:
           #CONFIGURACION DE 'SECRETs': 
           - name: BOOTADMIN_USUARIO

@@ -172,5 +172,20 @@
 		</plugins>
 	</build>
 
+	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' -->
+	<repositories>
+		<repository>
+			<id>repoCentral_TallerMicroservicios</id>
+			<name>Repositorio CENTRAL proporcionado por NEXUS 2</name>
+			<url>http://repositorio-nexus.ddns.net:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>	
+ 
 </project>
 

@@ -36,7 +36,7 @@ spec:
       volumes:
         - name: volumen-logs 
           persistentVolumeClaim:
-            claimName: capacitacion-microservicios-pvc
+            claimName: microservicio-employee-pvc
           #--------------------------#   
           env:
           #CONFIGURACION DE 'SECRETs': 

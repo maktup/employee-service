@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController; 
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.bean.ResponseMsg;
-import pe.com.capacitacion.service.EmpleadoService;
-import pe.com.capacitacion.util.UtilJeager;
+import pe.com.capacitacion.service.EmpleadoService; 
 
 /**
  * EmpleadoController
@@ -20,7 +19,7 @@ import pe.com.capacitacion.util.UtilJeager;
  **/
  @RestController
  @RequestMapping( "/employeeservice" )
- public class EmpleadoController extends UtilJeager{
+ public class EmpleadoController{
 	
 		private static final Logger LOGGER = LoggerFactory.getLogger( EmpleadoController.class );
 		
@@ -34,8 +33,7 @@ import pe.com.capacitacion.util.UtilJeager;
 	    **/
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
-			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado );
-			   this.jaegerAlertTracer(); 
+			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado ); 
 			   
 			   //Ejecutar:  
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.agregarEmpleadoService( empleado ); 
@@ -48,8 +46,7 @@ import pe.com.capacitacion.util.UtilJeager;
 	    **/
 		@GetMapping( "/get/empleados" )
 		public ResponseMsg consultarEmpleadosAll(){
-			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" );
-			   this.jaegerAlertTracer(); 
+			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" ); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService(); 
@@ -63,8 +60,7 @@ import pe.com.capacitacion.util.UtilJeager;
 	    **/
 		@GetMapping( "/get/empleados/{id}" )
 		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
-			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id );
-			   this.jaegerAlertTracer(); 
+			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id ); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id );
@@ -78,8 +74,7 @@ import pe.com.capacitacion.util.UtilJeager;
 	    **/
 		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
 		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
-			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId );
-			   this.jaegerAlertTracer(); 
+			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId ); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( departmentId );

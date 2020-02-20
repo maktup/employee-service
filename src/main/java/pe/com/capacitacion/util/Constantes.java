@@ -45,9 +45,16 @@ import org.springframework.stereotype.Component;
 		public static String HTTP_METHOD_01 = "get";  
 		public static String HTTP_METHOD_02 = "post";  
 		
-		public String IP_APP      = "1.1.1.1";
-		public String USUARIO_APP = "RGUERRA";
-		public String MSJ_APP_OK  = "PROCESO OK";
+		public static String IP_APP_OK      = "1.1.1.1";
+		public static String USUARIO_APP_OK = "RGUERRA"; 
+		
+		public static String IP_APP_NOK      = "1.1.1.1";
+		public static String NOMBRE_APP_NOK  = "IL";
+		public static String USUARIO_APP_NOK = "RGUERRA";
+		public static String COD_APP_NOK     = "-1";
+		public static String COD_APP_OK      = "0";
+		public static String MSJ_APP_NOK     = "ERROR EN EL PROCESO: ";
+		public static String MSJ_APP_OK      = "PROCESO OK";
 		
  }
 

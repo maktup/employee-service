@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 		public String valor01; 
 	    
 		
+		//[DNS]
 	    @Value( "${ingress.dns.employee}" )           //ACCESO: al valor REMOTO [ingress.dns.employee]
 	    public String ingressEmployee;
 		
@@ -25,12 +26,16 @@ import org.springframework.stereotype.Component;
 	    
 	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
 	    public String ingressOrganization;
+	   
+	    @Value( "${ingress.dns.utlcapadb}" )          //ACCESO: al valor REMOTO [ingress.dns.utlcapadb]
+	    public String ingressUtiCapadb;
 	    
 	    
-	    @Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    //[JAEGER]
+	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
 	    public String jeagerUrlServer;
         
-	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
+	    @Value( "${spring.application.name}" )               //ACCESO: al valor REMOTO [spring.application.name]
 	    public String nombreMicroServicio;
  
 	    

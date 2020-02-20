@@ -1,7 +1,5 @@
 package pe.com.capacitacion.service;
-
-import java.util.ArrayList;
-import java.util.List; 
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -35,20 +33,13 @@ import pe.com.capacitacion.util.Constantes;
  
 		@Autowired
 		private RestTemplateBuilder objTemplate;  
-		
-		@Autowired
-		private AuditoriaException objAuditoriaException; 
-		
-		
+ 		
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
         @Autowired
         private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
-        
-        @Autowired
-        private org.springframework.core.env.Environment env;
-        
+ 
  	   /**	
  	    * agregarEmpleadoService	
  	    * @param  empleado

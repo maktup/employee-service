@@ -1,83 +1,95 @@
 package pe.com.capacitacion.controller;
  
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController; 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Empleado;
-import pe.com.capacitacion.bean.ResponseMsg;
-import pe.com.capacitacion.service.EmpleadoService; 
+import pe.com.capacitacion.dto.ResponseEmplMsg; 
+import pe.com.capacitacion.service.EmpleadoService;
 
 /**
  * EmpleadoController
  * @author cguerra
  **/
+ @Slf4j      //Autogenerar LOG4J. 
  @RestController
- @RequestMapping( "/employeeservice" )
+ @RequestMapping( "/employeeservice" ) //NO USAR: [server.servlet.context-path], 'BOOT-ADMIN' reconocera el 'ACTUATOR'.
+ @Api( value="EmpleadoController", description="'CONTRATO/API' para la gestion de 'EMPLEADOS'." )
  public class EmpleadoController{
-	
-		private static final Logger LOGGER = LoggerFactory.getLogger( EmpleadoController.class );
-		
+	 
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
- 
+		
 	   /**
 	    * agregarEmpleado	
 	    * @param  empleado
-	    * @return ResponseMsg
+	    * @return ResponseEntity<ResponseEmplMsg>
 	    **/
 		@PostMapping( "/post/empleados" )
-		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
-			   LOGGER.info( "Empleado 'agregarEmpleado': {}", empleado ); 
-			   
-			   //Ejecutar:  
-			   ResponseMsg objResponseMsg = this.objEmpleadoService.agregarEmpleadoService( empleado ); 
+	    @ApiOperation( value="Funcionalidad para [CREAR] una ENTIDAD de tipo Empleado.", nickname="agregarEmpleado", notes="Funcionalidad para [CREAR] una ENTIDAD de tipo Empleado." )
+		public ResponseEntity<ResponseEmplMsg> agregarEmpleado( @RequestBody Empleado empleado ){ 
+			   log.info( "Empleado 'agregarEmpleado': {}", empleado );
+			   ResponseEntity<ResponseEmplMsg> objResponseMsg = this.objEmpleadoService.agregarEmpleadoService( empleado ); 
 			   return objResponseMsg; 
 		}
 		
 	   /**
-	    * consultarEmpleadosAll	
-	    * @return ResponseMsg
+	    * eliminarEmpleado	
+	    * @param  id
+	    * @return ResponseEntity<ResponseEmplMsg>
+	    **/
+		@DeleteMapping( "/delete/empleados/{id}" ) 
+	    @ApiOperation( value="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado por ID.", nickname="eliminarEmpleado", notes="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado por ID." )
+		public ResponseEntity<ResponseEmplMsg> eliminarEmpleado( @PathVariable( "id" ) Long id ){
+			   log.info( "Empleado 'eliminarEmpleado': {}", id );
+			   ResponseEntity<ResponseEmplMsg> objResponseMsg = this.objEmpleadoService.eliminarEmpleadoService( id ); 
+			   return objResponseMsg; 
+		} 
+		
+	   /**
+	    * consultarEmpleadosAll	  
+	    * @return ResponseEntity<ResponseEmplMsg>
 	    **/
 		@GetMapping( "/get/empleados" )
-		public ResponseMsg consultarEmpleadosAll(){
-			   LOGGER.info( "Empleado 'consultarEmpleadosAll'" ); 
-			   
-			   //Ejecutar: 
-			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService(); 
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa.", nickname="consultarEmpleadosAll", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa." )
+		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosAll(){
+			   log.info( "Empleado 'consultarEmpleadosAll'" );
+			   ResponseEntity<ResponseEmplMsg> objResponseMsg = this.objEmpleadoService.consultarEmpleadosAllService();
 			   return objResponseMsg; 
 		}
 		
 	   /**
 	    * consultarEmpleadosPorId	
 	    * @param  id
-	    * @return ResponseMsg
+	    * @return ResponseEntity<ResponseEmplMsg>
 	    **/
 		@GetMapping( "/get/empleados/{id}" )
-		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
-			   LOGGER.info( "Empleado 'consultarEmpleadosPorId': id={}", id ); 
-			   
-			   //Ejecutar: 
-			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id );
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por ID.", nickname="consultarEmpleadosPorId", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por ID." )
+		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
+			   log.info( "Empleado 'consultarEmpleadosPorId': id={}", id );
+			   ResponseEntity<ResponseEmplMsg> objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorIdService( id ); 
 			   return objResponseMsg; 
 		}
-		
+		 
 	   /**
 	    * consultarEmpleadosPorDepartamento	
-	    * @param  departmentId
-	    * @return ResponseMsg
+	    * @param  idDep
+	    * @return ResponseEntity<ResponseEmplMsg> 
 	    **/
-		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
-		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
-			   LOGGER.info( "Empleado 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId ); 
-			   
-			   //Ejecutar: 
-			   ResponseMsg objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( departmentId );
+		@GetMapping( "/get/empleados-departamento/{idDep}" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por IDDEP.", nickname="consultarEmpleadosPorDepartamento", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por IDDEP." ) 
+		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosPorDepartamento( @PathVariable( "idDep" ) Long idDep ){
+			   log.info( "Empleado 'consultarEmpleadosPorDepartamento': idDep={}", idDep );
+			   ResponseEntity<ResponseEmplMsg> objResponseMsg = this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( idDep );
 			   return objResponseMsg; 
 		}
  

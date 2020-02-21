@@ -39,7 +39,7 @@ import pe.com.capacitacion.util.Constantes;
  
         @Autowired
         private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
- 
+  
  	   /**	
  	    * agregarEmpleadoService	
  	    * @param  empleado
@@ -48,17 +48,17 @@ import pe.com.capacitacion.util.Constantes;
 		@HystrixCommand( fallbackMethod = "lanzarExceptionWS" )   //ANTE UNA FALLA LANZARPA EL MÉTODO: [lanzarExceptionWS].
 		public ResponseEntity<ResponseEmplMsg> agregarEmpleadoService( Empleado empleado ){
 			   log.info( "-----> Empleado 'agregarEmpleadoService': {}", empleado );
-			   
+				 
 			   Gson   objGson = new Gson();
 			   String vURI    = "/empleados";
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
-		 
+  
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
-		 		 
-			   //Armando URI:   
-			   String vURL01 = (this.constantes.ingressEmployee + "/" + Constantes.SERVICE_NAME_02 + "/" + Constantes.HTTP_METHOD_01 + vURI);
+			   
+			   //Armando URI: 
+			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_02 + vURI); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Transformar de OBJETO a JSON:                                         
@@ -77,7 +77,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //Transformar de JSON a OBJETO:    		
 			   pe.com.capacitacion.dto.ResponseEmplMsg objResponseMsg = objGson.fromJson( vCadenaJSON_01.getBody(), pe.com.capacitacion.dto.ResponseEmplMsg.class );
 			   log.info( "========>: objResponseMsg: " + objResponseMsg ); 
-  
+
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
 			   return objRetorno;

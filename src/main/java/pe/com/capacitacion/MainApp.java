@@ -46,8 +46,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 	    //---------------------------------------- [SWAGGER] ----------------------------------------// 
 		public ApiInfo apiInfo(){
 	           return new ApiInfoBuilder()
-	                  .title( "CONTRATO/API PARA LA GESTION 'UTILITARIA' DE LA BD: 'CAPADB'" )
-	                  .description( "CONTRATO/API DEL MICROSERVICIO: utl-capadb" )
+	                  .title( "CONTRATO/API PARA LA 'GESTION DEL EMPLEADOS'" )
+	                  .description( "CONTRATO/API DEL MICROSERVICIO: employee-service" )
 	                  .license( "Apache 2.0" )
 	                  .licenseUrl( "http://www.apache.org/licenses/LICENSE-2.0.html" )
 	                  .termsOfServiceUrl( "" )

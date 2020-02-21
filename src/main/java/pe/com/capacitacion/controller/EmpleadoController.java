@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController; 
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView; 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -93,6 +95,26 @@ import pe.com.capacitacion.service.EmpleadoService;
 			   return objResponseMsg; 
 		}
  
+		
+		/*************************************************************************************/
+		/************************************* [SWAGGER] *************************************/
+		/*************************************************************************************/
+       
+		/**
+        * mostrarContratoSwagger
+        * @param  attributes
+        * @return RedirectView
+        **/
+		@GetMapping( "/swagger" )
+	    public RedirectView mostrarContratoSwagger( RedirectAttributes attributes) {
+			   log.info( "-----> mostrarContratoSwagger"  );
+			
+			   RedirectView objRedirect = new RedirectView(); 
+			   //objRedirect.setUrl( "http://localhost:8093/swagger-ui.html" ); 
+			   objRedirect.setUrl( "/swagger-ui.html" );
+			   return objRedirect; 
+		}
+		
  }
 
  

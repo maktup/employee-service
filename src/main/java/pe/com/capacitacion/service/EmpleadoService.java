@@ -100,7 +100,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 		      
 			   //Armando URI: 
-			   String vURL01 = (this.constantes.ingressEmployee + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_03 + vURI + id); 
+			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_03 + vURI + id); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje DELETE: 
@@ -133,7 +133,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 		 	 
 			   //Armando URI: 
-			   String vURL01 = (this.constantes.ingressEmployee + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
+			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
@@ -167,7 +167,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 	 
 			   //Armando URI: 
-			   String vURL01 = (this.constantes.ingressEmployee + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + id); 
+			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + id); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
@@ -201,7 +201,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
  
 			   //Armando URI: 
-			   String vURL01 = (this.constantes.ingressEmployee + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + idDep); 
+			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + idDep); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 

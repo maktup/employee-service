@@ -17,8 +17,7 @@ CREAR EL 'CONTRADO/API' ONLINE USANDO:
 http://editor.swagger.io/
 
 UNA VEZ DESPLEGADO EL 'MICROSERVICIO' ACCEDER A:  
-http://capacitacion.microservicios.employee/swagger-ui.html
-http://capacitacion.microservicios.employee/employeeservice/swagger
+http://capacitacion.microservicios.employee/swagger-ui.html 
 
 
 Los LINKs del 'MICROSERVICIO' son:
@@ -61,6 +60,6 @@ Los LINKs del 'MICROSERVICIO' son:
  
 DETALLE:
 ------- 
-* Para INFORMACIÓN interna del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 'http://capacitacion.microservicios.employee/actuator' 
-* Para acceder a 'PHOMETHEUS' acceder por medio de ACTUATOR asi: 'http://capacitacion.microservicios.employee/actuator/prometheus'  
+* Para INFORMACIÓN interna del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 'http://capacitacion.microservicios.employee/actuator'
+* Para acceder a 'PHOMETHEUS' acceder por medio de ACTUATOR asi: 'http://capacitacion.microservicios.employee/actuator/prometheus'
 

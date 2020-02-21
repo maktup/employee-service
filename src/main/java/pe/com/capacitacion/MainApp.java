@@ -20,6 +20,7 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
  
 /**
  * MainApp
@@ -27,7 +28,8 @@ import springfox.documentation.spring.web.plugins.Docket;
  **/
  @SpringBootApplication
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
- @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT' 
+ @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
+ @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 
  public class MainApp{
  
 		@Autowired
@@ -67,6 +69,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 	    }
 	    //---------------------------------------- [SWAGGER] ----------------------------------------//
 		
+	    
 	    //----------------------------------------- [JEAGER] ----------------------------------------//   
 		@Bean
 	    public Tracer jaegerAlertTracer(){ 

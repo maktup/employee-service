@@ -18,7 +18,7 @@ http://editor.swagger.io/
 
 UNA VEZ DESPLEGADO EL 'MICROSERVICIO' ACCEDER A:  
 http://capacitacion.microservicios.employee/swagger-ui.html
-
+http://capacitacion.microservicios.employee/employeeservice/swagger
 
 
 Los LINKs del 'MICROSERVICIO' son:

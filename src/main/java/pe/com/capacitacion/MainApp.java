@@ -3,7 +3,6 @@ package pe.com.capacitacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean; 
@@ -28,7 +27,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author cguerra
  **/
  @SpringBootApplication
- @EnableDiscoveryClient     //IMPORTANTE: 'BOOT-ADMIN'
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 

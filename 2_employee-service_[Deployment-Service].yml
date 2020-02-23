@@ -11,6 +11,7 @@ metadata:
     app: microservicio-employee-service
     role: backend
     stage: production
+    version: v1.0.0
 spec:
   replicas: 1
   selector:
@@ -29,6 +30,22 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+          #CONFIGURACION DE 'SECRETs': 
+          - name: DUMMY_VARIABLE
+            value: javaman
+            
+          - name: BOOTADMIN_USUARIO
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_PASSWORD
+                name: employee-service-secret
+            
+          - name: BOOTADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_PASSWORD
+                name: employee-service-secret
           #--------------------------#  
           volumeMounts:
           - mountPath: /app/log
@@ -37,19 +54,7 @@ spec:
         - name: volumen-logs 
           persistentVolumeClaim:
             claimName: microservicio-employee-pvc
-          #--------------------------#   
-          env:
-          #CONFIGURACION DE 'SECRETs': 
-          - name: BOOTADMIN_USUARIO
-            valueFrom:
-              secretKeyRef:
-                key: BOOTADMIN_USUARIO
-                name: employee-service-secret
-          - name: BOOTADMIN_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: BOOTADMIN_PASSWORD
-                name: employee-service-secret
+          #--------------------------# 
 
 ---
 

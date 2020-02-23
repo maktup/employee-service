@@ -236,6 +236,9 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+			    
+			    log.info( "BOOTADMIN_USUARIO: [" + System.getProperty("BOOTADMIN_USUARIO") + "],  BOOTADMIN_PASSWORD: [" + System.getProperty("BOOTADMIN_PASSWORD") + "]" );
+			    log.info( "JEAGER_URL: [" + System.getProperty("JEAGER_URL") + "],  ORGANIZATION_SERVICE_PORT_8080_TCP_PORT: [" + System.getProperty("ORGANIZATION_SERVICE_PORT_8080_TCP_PORT") + "]" );
         }
 		
  }

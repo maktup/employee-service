@@ -2,6 +2,7 @@ package pe.com.capacitacion.service;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,9 @@ import pe.com.capacitacion.util.Constantes;
         @Autowired
         private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
   
+        @Autowired
+    	private Environment env;
+        
  	   /**	
  	    * agregarEmpleadoService	
  	    * @param  empleado
@@ -237,8 +241,8 @@ import pe.com.capacitacion.util.Constantes;
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
 			    
-			    log.info( "BOOTADMIN_USUARIO: [" + System.getProperty("BOOTADMIN_USUARIO") + "],  BOOTADMIN_PASSWORD: [" + System.getProperty("BOOTADMIN_PASSWORD") + "]" );
-			    log.info( "JEAGER_URL: [" + System.getProperty("JEAGER_URL") + "],  ORGANIZATION_SERVICE_PORT_8080_TCP_PORT: [" + System.getProperty("ORGANIZATION_SERVICE_PORT_8080_TCP_PORT") + "]" );
+			    log.info( "BOOTADMIN_USUARIO: [" + env.getProperty("BOOTADMIN_USUARIO") + "],  BOOTADMIN_PASSWORD: [" + env.getProperty("BOOTADMIN_PASSWORD") + "]" );
+			    log.info( "JEAGER_URL: [" + env.getProperty("JEAGER_URL") + "],  ORGANIZATION_SERVICE_PORT_8080_TCP_PORT: [" + env.getProperty("ORGANIZATION_SERVICE_PORT_8080_TCP_PORT") + "]" );
         }
 		
  }

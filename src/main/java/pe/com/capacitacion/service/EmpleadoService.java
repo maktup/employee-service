@@ -241,7 +241,7 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
-			    log.info( "ORACLE_USUARIO: [" + this.objVariablesEntorno.getProperty( "ORACLE_USUARIO" ) + "],  ORACLE_PASSWORD: [" + this.objVariablesEntorno.getProperty( "ORACLE_PASSWORD" ) + "]" );  
+			    log.info( "BOOTADMIN_USUARIO: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_USUARIO" ) + "], BOOTADMIN_PASSWORD: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_PASSWORD" ) + "]" );  
         }
 		
  }

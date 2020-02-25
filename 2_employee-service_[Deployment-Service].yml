@@ -30,6 +30,10 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          #IMPORTANTE: Si NO se configura [CPU/RAM] NO funcionara el: 'AUTOSCALING'.     
+          #resources:
+          #  limits:
+          #    cpu: 300m
           env:
           #CONFIGURACION DE 'SECRETs': 
           - name: DUMMY_VARIABLE

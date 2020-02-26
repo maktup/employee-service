@@ -34,7 +34,7 @@ import pe.com.capacitacion.util.Constantes;
  
 		@Autowired
 		//private RestTemplateBuilder objTemplate;  
-		private RestTemplate objTemplate;
+		private RestTemplate restTemplate; 
 		
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
@@ -77,7 +77,7 @@ import pe.com.capacitacion.util.Constantes;
 			   HttpEntity<Object> objEntityRequest = new HttpEntity<Object>( empleado, objHeader ); 
 			   
 			   //Enviar mensaje POST: 
-			   ResponseEntity<String> vCadenaJSON_01 = this.objTemplate.postForEntity( vURL01, objEntityRequest, String.class );
+			   ResponseEntity<String> vCadenaJSON_01 = this.restTemplate.postForEntity( vURL01, objEntityRequest, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01.getBody() + "]" );
 			   
 			   //Transformar de JSON a OBJETO:    		
@@ -110,7 +110,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje DELETE: 
-			   this.objTemplate.delete( vURL01 );  //Es VOID. 
+			   this.restTemplate.delete( vURL01 );  //Es VOID. 
 		       
 			   //Armando estructura RESPONSE: 
 			   Auditoria       objAuditoria   = super.cargarDatosAuditoria( Constantes.IP_APP_NOK, Constantes.MSJ_APP_OK, Constantes.USUARIO_APP_NOK, Constantes.MSJ_APP_OK ); 
@@ -143,7 +143,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.restTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -177,7 +177,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.restTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -211,7 +211,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.restTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   

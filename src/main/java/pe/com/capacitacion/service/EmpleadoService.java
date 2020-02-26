@@ -33,8 +33,9 @@ import pe.com.capacitacion.util.Constantes;
 		private Constantes constantes; 
  
 		@Autowired
-		private RestTemplateBuilder objTemplate;  
- 		
+		//private RestTemplateBuilder objTemplate;  
+		private RestTemplate objTemplate;
+		
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
@@ -60,7 +61,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
   
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Armando URI: 
 			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_02 + vURI); 
@@ -76,7 +77,7 @@ import pe.com.capacitacion.util.Constantes;
 			   HttpEntity<Object> objEntityRequest = new HttpEntity<Object>( empleado, objHeader ); 
 			   
 			   //Enviar mensaje POST: 
-			   ResponseEntity<String> vCadenaJSON_01 = objRspTmp.postForEntity( vURL01, objEntityRequest, String.class );
+			   ResponseEntity<String> vCadenaJSON_01 = this.objTemplate.postForEntity( vURL01, objEntityRequest, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01.getBody() + "]" );
 			   
 			   //Transformar de JSON a OBJETO:    		
@@ -102,14 +103,14 @@ import pe.com.capacitacion.util.Constantes;
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 			   
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 		      
 			   //Armando URI: 
 			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_03 + vURI + id); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje DELETE: 
-			   objRspTmp.delete( vURL01 );  //Es VOID. 
+			   this.objTemplate.delete( vURL01 );  //Es VOID. 
 		       
 			   //Armando estructura RESPONSE: 
 			   Auditoria       objAuditoria   = super.cargarDatosAuditoria( Constantes.IP_APP_NOK, Constantes.MSJ_APP_OK, Constantes.USUARIO_APP_NOK, Constantes.MSJ_APP_OK ); 
@@ -135,14 +136,14 @@ import pe.com.capacitacion.util.Constantes;
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			  
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 		 	 
 			   //Armando URI: 
 			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -169,14 +170,14 @@ import pe.com.capacitacion.util.Constantes;
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 			  
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 	 
 			   //Armando URI: 
 			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + id); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -203,14 +204,14 @@ import pe.com.capacitacion.util.Constantes;
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 			   
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   //RestTemplate objRspTmp = this.objTemplate.build(); 
  
 			   //Armando URI: 
 			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI + idDep); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL01, String.class );
+			   String vCadenaJSON_01 = this.objTemplate.getForObject( vURL01, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   

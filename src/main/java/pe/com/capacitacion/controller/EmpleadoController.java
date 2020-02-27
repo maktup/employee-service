@@ -3,6 +3,7 @@ package pe.com.capacitacion.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,6 +46,12 @@ import pe.com.capacitacion.service.EmpleadoService;
         		   log.info( "-----> department-service: "   + this.discoveryClient.getInstances( "department-service"   ) );
         		   log.info( "-----> organization-service: " + this.discoveryClient.getInstances( "organization-service" ) );
         		   log.info( "-----> utl-capadb-service: "   + this.discoveryClient.getInstances( "department-service"   ) );
+        		   
+        		   ServiceInstance objServiceInstance =  this.discoveryClient.getInstances( "employee-service" ).get( 0 );
+        		   log.info( "-----> getUri: " + objServiceInstance.getUri() );
+        		   log.info( "-----> getHost: " + objServiceInstance.getHost()  );
+        		   log.info( "-----> getPort: " + objServiceInstance.getPort()  );
+        		   log.info( "-----> getServiceId: " + objServiceInstance.getServiceId()  ); 
         	   }
         	   catch( Exception e ) {
         		      e.printStackTrace();

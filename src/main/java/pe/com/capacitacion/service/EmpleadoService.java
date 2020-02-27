@@ -139,7 +139,7 @@ import pe.com.capacitacion.util.Constantes;
 		 
 			   //discoveryClient.hashCode()
 			  
-    		   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( "employee-service" ).get( 0 );
+    		   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( "utl-capadb-service" ).get( 0 );
     		   log.info( "-----> getUri: " + objServiceInstance.getUri() );
 			   
     		   //String ingressUtiCapadb = objServiceInstance.getUri() + "";
@@ -154,7 +154,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 		 	 
 			   //Armando URI: 
-			   String vURL01 = (/*this.constantes.ingressUtiCapadb*/ url + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
+			   String vURL01 = (/*this.constantes.ingressUtiCapadb*/ objServiceInstance + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 

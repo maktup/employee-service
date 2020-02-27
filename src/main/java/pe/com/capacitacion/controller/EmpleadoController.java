@@ -45,9 +45,9 @@ import pe.com.capacitacion.service.EmpleadoService;
         		   log.info( "-----> employee-service: "     + this.discoveryClient.getInstances( "employee-service"     ).get( 0 ).getUri() );
         		   log.info( "-----> department-service: "   + this.discoveryClient.getInstances( "department-service"   ).get( 0 ).getUri() );
         		   log.info( "-----> organization-service: " + this.discoveryClient.getInstances( "organization-service" ).get( 0 ).getUri() );
-        		   log.info( "-----> utl-capadb-service: "   + this.discoveryClient.getInstances( "department-service"   ).get( 0 ).getUri() );
+        		   log.info( "-----> utl-capadb-service: "   + this.discoveryClient.getInstances( "utl-capadb-service"   ).get( 0 ).getUri() );
         		   
-        		   ServiceInstance objServiceInstance =  this.discoveryClient.getInstances( "employee-service" ).get( 0 );
+        		   ServiceInstance objServiceInstance =  this.discoveryClient.getInstances( "utl-capadb-service" ).get( 0 );
         		   log.info( "-----> getUri: " + objServiceInstance.getUri() );
         		   log.info( "-----> getHost: " + objServiceInstance.getHost()  );
         		   log.info( "-----> getPort: " + objServiceInstance.getPort()  );

@@ -25,10 +25,10 @@ import org.springframework.stereotype.Component;
 	    public String nombreMicroServicio;
  
 	    
-		public static String INSTANCIA_KUBERNETES_01 = "DEPARTMENT-SERVICE";  
-		public static String INSTANCIA_KUBERNETES_02 = "EMPLOYEE-SERVICE"; 
-		public static String INSTANCIA_KUBERNETES_03 = "ORGANIZATION-SERVICE";
-		public static String INSTANCIA_KUBERNETES_04 = "UTL-CAPADB"; 
+		public static String INSTANCIA_KUBERNETES_01 = "department-service";  
+		public static String INSTANCIA_KUBERNETES_02 = "employee-service"; 
+		public static String INSTANCIA_KUBERNETES_03 = "organization-service";
+		public static String INSTANCIA_KUBERNETES_04 = "utl-capadb-service"; 
 		
 		public static String SERVICE_NAME_01 = "departmentservice";  
 		public static String SERVICE_NAME_02 = "employeeservice"; 

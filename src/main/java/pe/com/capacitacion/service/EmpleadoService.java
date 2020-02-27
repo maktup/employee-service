@@ -39,9 +39,6 @@ import pe.com.capacitacion.util.Constantes;
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
-        //@Autowired
-        //private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
-  
         @Autowired
         private DiscoveryClient discoveryClient;
         
@@ -63,7 +60,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -110,7 +107,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -148,7 +145,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 ); 
@@ -187,7 +184,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build();  
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -226,7 +223,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -257,7 +254,7 @@ import pe.com.capacitacion.util.Constantes;
 	    * @param objConfigurationData01Param
 	    * @param objConfigurationData02Param
 	    **/
-        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param/*, ConfigurationData_02 objConfigurationData02Param*/ ){ 
+        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param ){ 
         	    log.info( "-----> Departamento 'mostrarVariablesEntorno'" );
         	    
 			    String vNombreServicio  = constantesParam.nombreServicio; 

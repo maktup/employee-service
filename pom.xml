@@ -50,13 +50,7 @@
 	</dependencyManagement>
 
 	<dependencies>
- 
-	    <!-- IMPORTANTE: [CONFIG SERVER], manejo de archivos de CONFIGURACION externos -->
-	    <dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>  
-		</dependency>
- 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>  
@@ -124,6 +118,11 @@
 		    <version>0.3.0.RELEASE</version> 
 		</dependency> 
 		
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+		    <version>0.3.0.RELEASE</version> 
+        </dependency>
 		
 		<!--
 		<dependency>
@@ -134,13 +133,7 @@
 		-->
 		
 		<!--  
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
-		    <version>0.3.0.RELEASE</version> 
-        </dependency>
-        -->
-  
+        --> 
   
 	    <!-- IMPORTANTE: [MICROMETER] -->
 		<dependency>

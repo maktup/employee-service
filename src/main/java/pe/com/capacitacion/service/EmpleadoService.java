@@ -2,7 +2,8 @@ package pe.com.capacitacion.service;
  
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
@@ -46,7 +47,11 @@ import pe.com.capacitacion.util.Constantes;
         private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
   
         @Autowired
+        private DiscoveryClient discoveryClient;
+        
+        @Autowired
     	private Environment objVariablesEntorno;
+        
         
  	   /**	
  	    * agregarEmpleadoService	
@@ -133,7 +138,12 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "-----> Empleado 'consultarEmpleadosAllService'" );
 		 
 			   //discoveryClient.hashCode()
+			  
+    		   ServiceInstance objServiceInstance =  this.discoveryClient.getInstances( "employee-service" ).get( 0 );
+    		   log.info( "-----> getUri: " + objServiceInstance.getUri() );
 			   
+    		   String ingressUtiCapadb = objServiceInstance.getUri() + "";
+    		   
 			   Gson   objGson = new Gson();
 			   String vURI    = "/empleados";
 			   
@@ -143,7 +153,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //RestTemplate objRspTmp = this.objTemplate.build(); 
 		 	 
 			   //Armando URI: 
-			   String vURL01 = (this.constantes.ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
+			   String vURL01 = (/*this.constantes.ingressUtiCapadb*/ ingressUtiCapadb + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
 			   log.info( "========>: vURL01 [" + vURL01 + "]" );
 			   
 			   //Enviar mensaje GET: 

@@ -151,7 +151,7 @@ import pe.com.capacitacion.util.Constantes;
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
-			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
+			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 ); 
 			   
 			   String vHostKubernetes = objServiceInstance.getUri() + ""; 
 			   log.info( "-----> vHostKubernetes: [" + objServiceInstance.getUri() + "]" );

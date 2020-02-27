@@ -15,22 +15,8 @@ import org.springframework.stereotype.Component;
 	 
 		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01}]
 		public String valor01; 
-	    
+ 
 		
-		//[DNS]
-	    @Value( "${ingress.dns.employee}" )           //ACCESO: al valor REMOTO [ingress.dns.employee]
-	    public String ingressEmployee;
-		
-	    @Value( "${ingress.dns.department}" )         //ACCESO: al valor REMOTO [ingress.dns.department]
-	    public String ingressDepartment;
-	    
-	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
-	    public String ingressOrganization;
-	   
-	    @Value( "${ingress.dns.utlcapadb}" )          //ACCESO: al valor REMOTO [ingress.dns.utlcapadb]
-	    public String ingressUtiCapadb;
-	    
-	    
 	    //[JAEGER]
 	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
 	    public String jeagerUrlServer;
@@ -39,10 +25,10 @@ import org.springframework.stereotype.Component;
 	    public String nombreMicroServicio;
  
 	    
-		public static String INSTANCIA_EUREKA_01 = "DEPARTMENT-SERVICE";  
-		public static String INSTANCIA_EUREKA_02 = "EMPLOYEE-SERVICE"; 
-		public static String INSTANCIA_EUREKA_03 = "ORGANIZATION-SERVICE";
-		public static String INSTANCIA_EUREKA_04 = "UTL-CAPADB";
+		public static String INSTANCIA_KUBERNETES_01 = "DEPARTMENT-SERVICE";  
+		public static String INSTANCIA_KUBERNETES_02 = "EMPLOYEE-SERVICE"; 
+		public static String INSTANCIA_KUBERNETES_03 = "ORGANIZATION-SERVICE";
+		public static String INSTANCIA_KUBERNETES_04 = "UTL-CAPADB"; 
 		
 		public static String SERVICE_NAME_01 = "departmentservice";  
 		public static String SERVICE_NAME_02 = "employeeservice"; 

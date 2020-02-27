@@ -1,10 +1,6 @@
 package pe.com.capacitacion.controller;
  
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,37 +28,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 	 
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
-	 
-        @Autowired
-        private DiscoveryClient discoveryClient;
-  
  
-		@GetMapping( "/get/servidores" )
-        public List<String> listaServidores(){
-        	   log.info( "-----> Empleado 'listaServidores'" );
-        	
-        	   try{
-        		   log.info( "-----> employee-service: "     + this.discoveryClient.getInstances( "employee-service"     ).get( 0 ).getUri() );
-        		   log.info( "-----> department-service: "   + this.discoveryClient.getInstances( "department-service"   ).get( 0 ).getUri() );
-        		   log.info( "-----> organization-service: " + this.discoveryClient.getInstances( "organization-service" ).get( 0 ).getUri() );
-        		   log.info( "-----> utl-capadb-service: "   + this.discoveryClient.getInstances( "utl-capadb-service"   ).get( 0 ).getUri() );
-        		   
-        		   ServiceInstance objServiceInstance =  this.discoveryClient.getInstances( "utl-capadb-service" ).get( 0 );
-        		   log.info( "-----> getUri: " + objServiceInstance.getUri() );
-        		   log.info( "-----> getHost: " + objServiceInstance.getHost()  );
-        		   log.info( "-----> getPort: " + objServiceInstance.getPort()  );
-        		   log.info( "-----> getServiceId: " + objServiceInstance.getServiceId()  ); 
-        		   
-        		   //https://{service-name}.{namespace}.svc.{cluster}.local:{service-port}.
-        		   String x = "employee-service.default.svc.minikube.local:";
-        	   }
-        	   catch( Exception e ) {
-        		      e.printStackTrace();
-        	   } 
-        	
-               return discoveryClient.getServices();
-        }
-		
 		
 	   /**
 	    * agregarEmpleado	

@@ -34,9 +34,9 @@ import pe.com.capacitacion.service.EmpleadoService;
 	 
         @Autowired
         private DiscoveryClient discoveryClient;
-        
-        
-        @GetMapping( "servidores" )
+  
+ 
+		@GetMapping( "/get/servidores" )
         public List<String> listaServidores(){
         	   log.info( "-----> Empleado 'listaServidores'" );
         	

@@ -20,7 +20,6 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
-import pe.com.capacitacion.properties.ConfigurationData_02;
 import pe.com.capacitacion.util.Constantes;
 
 /**
@@ -40,8 +39,8 @@ import pe.com.capacitacion.util.Constantes;
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
-        @Autowired
-        private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
+        //@Autowired
+        //private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
   
         @Autowired
         private DiscoveryClient discoveryClient;
@@ -64,7 +63,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -111,7 +110,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -149,7 +148,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -159,7 +158,7 @@ import pe.com.capacitacion.util.Constantes;
  
 			   //Armando URI: 
 			   String vURL = (vHostKubernetes + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
-			   log.info( "========>: vURL01 [" + vURL + "]" );
+			   log.info( "========>: vURL [" + vURL + "]" );
 			    
 			   //Enviar mensaje GET: 
 			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL, String.class );
@@ -188,7 +187,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build();  
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -227,7 +226,7 @@ import pe.com.capacitacion.util.Constantes;
 			   RestTemplate objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01/*, this.objConfigurationData02*/); 
 			  			   
 			   //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 			   ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_04 ).get( 0 );
@@ -258,19 +257,15 @@ import pe.com.capacitacion.util.Constantes;
 	    * @param objConfigurationData01Param
 	    * @param objConfigurationData02Param
 	    **/
-        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param, ConfigurationData_02 objConfigurationData02Param ){ 
+        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param/*, ConfigurationData_02 objConfigurationData02Param*/ ){ 
         	    log.info( "-----> Departamento 'mostrarVariablesEntorno'" );
         	    
 			    String vNombreServicio  = constantesParam.nombreServicio; 
 			    String vValor_01        = constantesParam.valor01; 
 			    String vNombres         = objConfigurationData01Param.getNombres();
 			    String vDni             = objConfigurationData01Param.getDni(); 		
-			    String vDnsEmployee     = objConfigurationData02Param.getEmployee(); 
-			    String vDnsDepartment   = objConfigurationData02Param.getDepartment(); 
-			    String vDnsOrganization = objConfigurationData02Param.getOrganization();  
 			   
-			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
-			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" );  
 			    log.info( "BOOTADMIN_USUARIO: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_USUARIO" ) + "], BOOTADMIN_PASSWORD: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_PASSWORD" ) + "]" );  
         }
 		

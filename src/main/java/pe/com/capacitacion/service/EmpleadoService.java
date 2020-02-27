@@ -1,7 +1,9 @@
 package pe.com.capacitacion.service;
  
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate; 
 import com.google.gson.Gson;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
@@ -44,7 +47,6 @@ import pe.com.capacitacion.util.Constantes;
   
         @Autowired
     	private Environment objVariablesEntorno;
-        
         
  	   /**	
  	    * agregarEmpleadoService	
@@ -130,6 +132,8 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosAllService(){ 
 			   log.info( "-----> Empleado 'consultarEmpleadosAllService'" );
 		 
+			   //discoveryClient.hashCode()
+			   
 			   Gson   objGson = new Gson();
 			   String vURI    = "/empleados";
 			   

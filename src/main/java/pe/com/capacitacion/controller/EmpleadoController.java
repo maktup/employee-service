@@ -1,6 +1,9 @@
 package pe.com.capacitacion.controller;
  
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +31,28 @@ import pe.com.capacitacion.service.EmpleadoService;
 	 
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
+	 
+        @Autowired
+        private DiscoveryClient discoveryClient;
+        
+        
+        @GetMapping( "servidores" )
+        public List<String> listaServidores(){
+        	   log.info( "-----> Empleado 'listaServidores'" );
+        	
+        	   try{
+        		   log.info( "-----> employee-service: "     + this.discoveryClient.getInstances( "employee-service"     ) );
+        		   log.info( "-----> department-service: "   + this.discoveryClient.getInstances( "department-service"   ) );
+        		   log.info( "-----> organization-service: " + this.discoveryClient.getInstances( "organization-service" ) );
+        		   log.info( "-----> utl-capadb-service: "   + this.discoveryClient.getInstances( "department-service"   ) );
+        	   }
+        	   catch( Exception e ) {
+        		      e.printStackTrace();
+        	   } 
+        	
+               return discoveryClient.getServices();
+        }
+		
 		
 	   /**
 	    * agregarEmpleado	

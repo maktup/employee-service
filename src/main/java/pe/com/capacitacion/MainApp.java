@@ -1,19 +1,19 @@
 package pe.com.capacitacion;
 
+import io.opentracing.Tracer;
+import io.jaegertracing.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-
-import io.jaegertracing.Configuration;
+import org.springframework.web.client.RestTemplate; 
 import io.jaegertracing.Configuration.ReporterConfiguration;
 import io.jaegertracing.Configuration.SamplerConfiguration;
 import io.jaegertracing.Configuration.SenderConfiguration;
 import io.jaegertracing.samplers.ConstSampler;
-import io.opentracing.Tracer;
 import pe.com.capacitacion.util.Constantes;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -32,6 +32,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 
+ @EnableDiscoveryClient     //IMPORTANTE: Descubrimiento por 'KUBERNETES'. 
  public class MainApp{
  
 		@Autowired

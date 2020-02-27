@@ -113,7 +113,7 @@
 	    <!-- IMPORTANTE: [KUBERNETES] -->
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-kubernetes</artifactId>
+		    <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
 		    <version>0.3.0.RELEASE</version> 
 		</dependency>
 		<!--

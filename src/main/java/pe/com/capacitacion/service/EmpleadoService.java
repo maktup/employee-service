@@ -3,7 +3,8 @@ package pe.com.capacitacion.service;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Empleado;
-import pe.com.capacitacion.bean.Auditoria;
+import pe.com.capacitacion.bean.Auditoria; 
+import java.util.Random; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.ServiceInstance;
@@ -44,6 +45,28 @@ import pe.com.capacitacion.util.Constantes;
         
         @Autowired
     	private Environment objVariablesEntorno;
+        
+    	//@Autowired
+    	//private Tracer tracer;
+        
+        @Autowired
+    	private Random random;
+        
+ 
+		public String saludar() throws InterruptedException { 
+			log.info("saludar2");
+			RestTemplate objRspTmp = this.objTemplate.build();  
+			String s = objRspTmp.getForObject( "http://172.17.0.11:8080/hi", String.class );
+			return "hi/" + s;
+		}
+
+ 
+		public String hola() throws InterruptedException {
+			   log.info("hi");
+			   int millis = this.random.nextInt(1000);
+			   //this.tracer.addTag("random-sleep-millis", String.valueOf(millis) );
+			   return "hello";
+		} 
         
         
  	   /**	

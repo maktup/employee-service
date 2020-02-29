@@ -86,13 +86,7 @@
         --> 
   
  
-        <!-- Zipkin -->
-		<dependency>
-		    <groupId>io.fabric8</groupId>
-		    <artifactId>spring-cloud-kubernetes-zipkin</artifactId>
-		    <version>0.1.6</version>
-		</dependency>
-		
+        <!-- Zipkin --> 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-zipkin</artifactId>

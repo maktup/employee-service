@@ -53,7 +53,7 @@ import zipkin2.Span;
         private Tracer tracer;
         
         @Autowired
-    	private RestTemplate objRspTmp;
+    	private RestTemplate restTemplate; 
         
         
 		public String saludar() throws InterruptedException{ 
@@ -71,8 +71,8 @@ import zipkin2.Span;
 		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );
 		    String vHostKubernetes = objServiceInstance.getUri() + ""; 
 		    
-			this.objRspTmp = this.objTemplate.build();  
-			String s = this.objRspTmp.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
+			this.restTemplate = this.objTemplate.build();  
+			String s = this.restTemplate.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
 			
 			
 			span.finish();
@@ -105,7 +105,7 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados";
-			   this.objRspTmp = this.objTemplate.build(); 
+			   this.restTemplate = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -130,7 +130,7 @@ import zipkin2.Span;
 			   HttpEntity<Object> objEntityRequest = new HttpEntity<Object>( empleado, objHeader ); 
 			   
 			   //Enviar mensaje POST: 
-			   ResponseEntity<String> vCadenaJSON_01 = objRspTmp.postForEntity( vURL, objEntityRequest, String.class );
+			   ResponseEntity<String> vCadenaJSON_01 = restTemplate.postForEntity( vURL, objEntityRequest, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01.getBody() + "]" );
 			   
 			   //Transformar de JSON a OBJETO:    		
@@ -152,7 +152,7 @@ import zipkin2.Span;
 			   log.info( "-----> Empleado 'eliminarEmpleadoService': {}", id );
 		
 			   String       vURI      = "/empleados/";
-			   this.objRspTmp = this.objTemplate.build(); 
+			   this.restTemplate = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -168,7 +168,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" ); 
 			   
 			   //Enviar mensaje DELETE: 
-			   objRspTmp.delete( vURL );  //Es VOID. 
+			   restTemplate.delete( vURL );  //Es VOID. 
 		       
 			   //Armando estructura RESPONSE: 
 			   Auditoria       objAuditoria   = super.cargarDatosAuditoria( Constantes.IP_APP_NOK, Constantes.MSJ_APP_OK, Constantes.USUARIO_APP_NOK, Constantes.MSJ_APP_OK ); 
@@ -190,7 +190,7 @@ import zipkin2.Span;
   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
-			   this.objRspTmp = this.objTemplate.build(); 
+			   this.restTemplate = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -206,7 +206,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			    
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -229,7 +229,7 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados/";
-			   this.objRspTmp = this.objTemplate.build();  
+			   this.restTemplate = this.objTemplate.build();  
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -245,7 +245,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -268,7 +268,7 @@ import zipkin2.Span;
 			   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados-departamento/";
-			   this.objRspTmp = this.objTemplate.build(); 
+			   this.restTemplate = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -284,7 +284,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = objRspTmp.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   

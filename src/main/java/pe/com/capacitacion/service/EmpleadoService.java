@@ -3,8 +3,7 @@ package pe.com.capacitacion.service;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Empleado;
-import pe.com.capacitacion.bean.Auditoria; 
-import java.util.Random; 
+import pe.com.capacitacion.bean.Auditoria;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.ServiceInstance;
@@ -18,10 +17,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service; 
 import org.springframework.web.client.RestTemplate; 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
+import brave.Tracer;
+import brave.propagation.TraceContextOrSamplingFlags;
+import brave.propagation.TraceIdContext;
 import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
 import pe.com.capacitacion.util.Constantes;
+import zipkin2.Span;
 
 /**
  * EmpleadoService
@@ -46,9 +49,16 @@ import pe.com.capacitacion.util.Constantes;
         @Autowired
     	private Environment objVariablesEntorno;
  
+        
+        @Autowired
+        private Tracer tracer;
+        
  
-		public String saludar() throws InterruptedException { 
+		public String saludar() throws InterruptedException{ 
 			log.info("saludar2");
+			
+			brave.Span span = this.tracer.nextSpan( TraceContextOrSamplingFlags.newBuilder().traceIdContext( TraceIdContext.newBuilder().traceId(123L).build() ).build() ).name( "employee-service" ).start();
+			log.info( "==================>:" + span);
 			
 		    //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );

@@ -45,25 +45,23 @@ import pe.com.capacitacion.util.Constantes;
         
         @Autowired
     	private Environment objVariablesEntorno;
-        
-    	//@Autowired
-    	//private Tracer tracer;
-        
-        @Autowired
-    	private Random random;
-        
+ 
  
 		public String saludar() throws InterruptedException { 
 			log.info("saludar2");
+			
+		    //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
+		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );
+		    String vHostKubernetes = objServiceInstance.getUri() + ""; 
+		    
 			RestTemplate objRspTmp = this.objTemplate.build();  
-			String s = objRspTmp.getForObject( "http://172.17.0.11:8080/hi", String.class );
+			String s = objRspTmp.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
 			return "hi/" + s;
 		}
 
  
 		public String hola() throws InterruptedException {
-			   log.info("hi");
-			   int millis = this.random.nextInt(1000);
+			   log.info("hi"); 
 			   //this.tracer.addTag("random-sleep-millis", String.valueOf(millis) );
 			   return "hello";
 		} 

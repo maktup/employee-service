@@ -43,7 +43,7 @@ import pe.com.capacitacion.service.EmpleadoService;
 			catch ( Exception e) { 
 				    e.printStackTrace();
 			} 
-			return "hi/" + s;
+			return "/hi" + s;
 		}
 
 		@RequestMapping("/hi")

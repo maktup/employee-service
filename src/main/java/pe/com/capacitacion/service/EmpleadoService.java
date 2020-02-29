@@ -192,6 +192,11 @@ import zipkin2.Span;
 			   String       vURI      = "/empleados"; 
 			   this.restTemplate = this.objTemplate.build(); 
 			   
+			   
+			   brave.Span span = this.tracer.nextSpan().name( "employee-service" ).start();
+			   log.info("=======> span: " + span);
+				 
+			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -213,6 +218,9 @@ import zipkin2.Span;
 			   pe.com.capacitacion.dto.ResponseEmplMsg objResponseMsg = objGson.fromJson( vCadenaJSON_01, pe.com.capacitacion.dto.ResponseEmplMsg.class );
 			   log.info( "========>: objResponseMsg: " + objResponseMsg ); 
  
+			   
+			   span.finish();
+			   
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
 			   return objRetorno;

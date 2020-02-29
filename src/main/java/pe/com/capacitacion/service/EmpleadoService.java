@@ -48,31 +48,48 @@ import zipkin2.Span;
         
         @Autowired
     	private Environment objVariablesEntorno;
- 
-        
+         
         @Autowired
         private Tracer tracer;
         
- 
+        @Autowired
+    	private RestTemplate objRspTmp;
+        
+        
 		public String saludar() throws InterruptedException{ 
 			log.info("saludar2");
 			
-			brave.Span span = this.tracer.nextSpan( TraceContextOrSamplingFlags.newBuilder().traceIdContext( TraceIdContext.newBuilder().traceId(123L).build() ).build() ).name( "employee-service" ).start();
-			log.info( "==================>:" + span);
+			//brave.Span span = this.tracer.nextSpan( TraceContextOrSamplingFlags.newBuilder().traceIdContext( TraceIdContext.newBuilder().traceId(123L).build() ).build() ).name( "employee-service" ).start();
+			//log.info( "==================>:" + span);
+ 
+			
+			brave.Span span = this.tracer.nextSpan().name( "employee-service" ).start();
+			 log.info("=======> A: " + span);
+			
 			
 		    //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );
 		    String vHostKubernetes = objServiceInstance.getUri() + ""; 
 		    
-			RestTemplate objRspTmp = this.objTemplate.build();  
-			String s = objRspTmp.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
+			this.objRspTmp = this.objTemplate.build();  
+			String s = this.objRspTmp.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
+			
+			
+			span.finish();
+ 
+			
 			return "hi/" + s;
 		}
 
  
 		public String hola() throws InterruptedException {
 			   log.info("hi"); 
-			   //this.tracer.addTag("random-sleep-millis", String.valueOf(millis) );
+			   brave.Span span = this.tracer.newTrace();
+			   
+			   log.info("=======> B: " + span);
+			   
+			   span.finish();
+			   
 			   return "hello";
 		} 
         
@@ -88,7 +105,7 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados";
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   this.objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -135,7 +152,7 @@ import zipkin2.Span;
 			   log.info( "-----> Empleado 'eliminarEmpleadoService': {}", id );
 		
 			   String       vURI      = "/empleados/";
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   this.objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -173,7 +190,7 @@ import zipkin2.Span;
   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   this.objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -212,7 +229,7 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados/";
-			   RestTemplate objRspTmp = this.objTemplate.build();  
+			   this.objRspTmp = this.objTemplate.build();  
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -251,7 +268,7 @@ import zipkin2.Span;
 			   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados-departamento/";
-			   RestTemplate objRspTmp = this.objTemplate.build(); 
+			   this.objRspTmp = this.objTemplate.build(); 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 

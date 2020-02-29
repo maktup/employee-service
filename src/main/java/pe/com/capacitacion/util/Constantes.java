@@ -15,39 +15,40 @@ import org.springframework.stereotype.Component;
 	 
 		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01}]
 		public String valor01; 
-	    
+ 
 		
-	    @Value( "${ingress.dns.employee}" )           //ACCESO: al valor REMOTO [ingress.dns.employee]
-	    public String ingressEmployee;
-		
-	    @Value( "${ingress.dns.department}" )         //ACCESO: al valor REMOTO [ingress.dns.department]
-	    public String ingressDepartment;
-	    
-	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
-	    public String ingressOrganization;
-	    
-	    
-	    @Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    //[JAEGER]
+	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
 	    public String jeagerUrlServer;
         
-	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
+	    @Value( "${spring.application.name}" )               //ACCESO: al valor REMOTO [spring.application.name]
 	    public String nombreMicroServicio;
  
 	    
-		public static String INSTANCIA_EUREKA_01 = "EMPLOYEE-SERVICE"; 
-		public static String INSTANCIA_EUREKA_02 = "DEPARTMENT-SERVICE";  
-		public static String INSTANCIA_EUREKA_03 = "ORGANIZATION-SERVICE";
-		 
-		public static String SERVICE_NAME_01 = "employeeservice";  
-		public static String SERVICE_NAME_02 = "departmentservice"; 
-		public static String SERVICE_NAME_03 = "organizationservice";
-
-		public static String HTTP_METHOD_01 = "get";  
-		public static String HTTP_METHOD_02 = "post";  
+		public static String INSTANCIA_KUBERNETES_01 = "department-service";  
+		public static String INSTANCIA_KUBERNETES_02 = "employee-service"; 
+		public static String INSTANCIA_KUBERNETES_03 = "organization-service";
+		public static String INSTANCIA_KUBERNETES_04 = "utl-capadb-service"; 
 		
-		public String IP_APP      = "1.1.1.1";
-		public String USUARIO_APP = "RGUERRA";
-		public String MSJ_APP_OK  = "PROCESO OK";
+		public static String SERVICE_NAME_01 = "departmentservice";  
+		public static String SERVICE_NAME_02 = "employeeservice"; 
+		public static String SERVICE_NAME_03 = "organizationservice";
+		public static String SERVICE_NAME_04 = "utlcapadb";
+		
+		public static String HTTP_METHOD_01 = "get";  
+		public static String HTTP_METHOD_02 = "post"; 
+		public static String HTTP_METHOD_03 = "delete";
+ 
+		public static String IP_APP_OK      = "1.1.1.1";
+		public static String USUARIO_APP_OK = "RGUERRA"; 
+		
+		public static String IP_APP_NOK      = "1.1.1.1";
+		public static String NOMBRE_APP_NOK  = "IL";
+		public static String USUARIO_APP_NOK = "RGUERRA";
+		public static String COD_APP_NOK     = "-1";
+		public static String COD_APP_OK      = "0";
+		public static String MSJ_APP_NOK     = "ERROR EN EL PROCESO: ";
+		public static String MSJ_APP_OK      = "PROCESO OK";
 		
  }
 

@@ -1,0 +1,174 @@
+swagger: '2.0'
+info:
+  description: 'CONTRATO/API DEL MICROSERVICIO: employee-service'
+  version: '1.0'
+  title: 'CONTRATO/API PARA LA GESTION DE EMPLEADOS'
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: cesarricardo_guerra19@hotmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    
+host: pe.com.capacitacion
+basePath: /employeeservice
+schemes:
+  - http
+  
+paths:
+
+  #####################################################################################################
+  ############################################ [EMPLEADOS] ############################################
+  #####################################################################################################
+  /post/empleados:
+    post:
+      summary: Funcionalidad para [REGISTRAR] una ENTIDAD de tipo Empleado.
+      description: Funcionalidad para [REGISTRAR] una ENTIDAD de tipo Empleado.
+      operationId: agregarEmpleado
+      produces: 
+        - application/json
+      parameters:
+        - name: body
+          in: body 
+          description: La Entidad del Empleado
+          required: true
+          schema:
+            $ref: '#/definitions/Empleado'
+      responses:
+        '200':
+          description: PROCESO EXITOSO
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+        '400':
+          description: ERROR EN EL PROCESO 
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+  
+  
+  /delete/empleados/{id}:
+    delete:
+      summary: Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado.
+      description: Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado.
+      operationId: eliminarEmpleado
+      parameters:
+        - name: id
+          in: path
+          description: El id del Empleado
+          required: true
+          type: integer 
+      responses:
+        '200':
+          description: PROCESO EXITOSO
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+        '400':
+          description: ERROR EN EL PROCESO 
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+ 
+ 
+  /get/empleados:
+    get:
+      summary: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa.
+      description: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa.
+      operationId: consultarEmpleadosAll
+      responses:
+        '200':
+          description: PROCESO EXITOSO
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+        '400':
+          description: ERROR EN EL PROCESO 
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'  
+            
+
+  /get/empleados/{id}:
+    get:
+      summary: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa por id.
+      description: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa por id.
+      operationId: consultarEmpleadosPorId
+      parameters:
+        - name: id
+          in: path
+          description: El id del Empleado
+          required: true
+          type: integer 
+      responses:
+        '200':
+          description: PROCESO EXITOSO
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+        '400':
+          description: ERROR EN EL PROCESO 
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg' 
+
+
+  /get/empleados-departamento/{idDep}:
+    get:
+      summary: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa por idDep.
+      description: Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa por idDep.
+      operationId: consultarEmpleadosPorDepartamento
+      parameters:
+        - name: idDep
+          in: path
+          description: El id del Departamento
+          required: true
+          type: integer 
+      responses:
+        '200':
+          description: PROCESO EXITOSO
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+        '400':
+          description: ERROR EN EL PROCESO 
+          schema:
+            $ref: '#/definitions/ResponseEmplMsg'
+            
+            
+ #####################################################################################################
+ ########################################### [ENTIDADES] #############################################
+ ##################################################################################################### 
+definitions: 
+  Empleado:
+    type: object
+    properties:
+      id:
+        type: integer
+      nombre:
+        type: string
+      edad:
+        type: integer
+      rol:
+        type: string
+      idDep:
+        type: integer  
+        
+  ResponseEmplMsg:
+    type: object
+    properties:
+      auditoria:
+        type: object
+        properties:
+          ipApp:
+            type: string
+          nombreApp:
+            type: string
+          usuarioApp:
+            type: string
+          codigoApp:
+            type: string
+          codigoHttp:
+            type: string
+          mensajeApp:
+            type: string 
+      listaEmpleados:
+        type: array
+        items:
+          $ref: '#/definitions/Empleado'  
+ 
+externalDocs:
+  description: Encuentra mas sobre SWAGGER
+  url: 'http://swagger.io'
+

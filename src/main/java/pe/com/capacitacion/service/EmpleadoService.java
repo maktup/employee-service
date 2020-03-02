@@ -17,15 +17,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service; 
 import org.springframework.web.client.RestTemplate; 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
-import brave.Tracer;
-import brave.propagation.TraceContextOrSamplingFlags;
-import brave.propagation.TraceIdContext;
 import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
 import pe.com.capacitacion.util.Constantes;
-import zipkin2.Span;
-
+import brave.Span;
+import brave.Tracer; 
+ 
 /**
  * EmpleadoService
  * @author cguerra
@@ -50,46 +48,45 @@ import zipkin2.Span;
     	private Environment objVariablesEntorno;
          
         @Autowired
-        private Tracer tracer;
+        private Tracer objTracer; 
         
         @Autowired
-    	private RestTemplate restTemplate; 
+    	private RestTemplate objRestTemplate; 
         
         
 		public String saludar() throws InterruptedException{ 
 			log.info("saludar2");
 			
-			//brave.Span span = this.tracer.nextSpan( TraceContextOrSamplingFlags.newBuilder().traceIdContext( TraceIdContext.newBuilder().traceId(123L).build() ).build() ).name( "employee-service" ).start();
-			//log.info( "==================>:" + span);
- 
+			Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			objSpan.start();
 			
-			brave.Span span = this.tracer.nextSpan().name( "employee-service" ).start();
-			 log.info("=======> A: " + span);
+			log.info("=======> A: " + objSpan);
 			
 			
 		    //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
 		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );
 		    String vHostKubernetes = objServiceInstance.getUri() + ""; 
 		    
-			this.restTemplate = this.objTemplate.build();  
-			String s = this.restTemplate.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
+			this.objRestTemplate = this.objTemplate.build();  
+			String s = this.objRestTemplate.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
 			
 			
-			span.finish();
- 
-			
+			objSpan.finish(); 
 			return "hi/" + s;
 		}
 
  
 		public String hola() throws InterruptedException {
 			   log.info("hi"); 
-			   brave.Span span = this.tracer.newTrace();
+			   brave.Span span = this.objTracer.newTrace();
 			   
-			   log.info("=======> B: " + span);
+			   Span objSpan = this.objTracer.nextSpan().name( "utl-capadb" );  
+			   objSpan.start();
 			   
-			   span.finish();
+			   log.info("=======> A2: " + objSpan);
+			   log.info("=======> B2: " + span);
 			   
+				objSpan.finish(); 
 			   return "hello";
 		} 
         
@@ -105,7 +102,11 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados";
-			   this.restTemplate = this.objTemplate.build(); 
+			   this.objRestTemplate = this.objTemplate.build(); 
+			   
+			   //Zipkin: 
+			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -130,7 +131,7 @@ import zipkin2.Span;
 			   HttpEntity<Object> objEntityRequest = new HttpEntity<Object>( empleado, objHeader ); 
 			   
 			   //Enviar mensaje POST: 
-			   ResponseEntity<String> vCadenaJSON_01 = restTemplate.postForEntity( vURL, objEntityRequest, String.class );
+			   ResponseEntity<String> vCadenaJSON_01 = objRestTemplate.postForEntity( vURL, objEntityRequest, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01.getBody() + "]" );
 			   
 			   //Transformar de JSON a OBJETO:    		
@@ -139,6 +140,8 @@ import zipkin2.Span;
 
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
+			   objSpan.finish();
+			   
 			   return objRetorno;
 		}
 		
@@ -152,7 +155,11 @@ import zipkin2.Span;
 			   log.info( "-----> Empleado 'eliminarEmpleadoService': {}", id );
 		
 			   String       vURI      = "/empleados/";
-			   this.restTemplate = this.objTemplate.build(); 
+			   this.objRestTemplate = this.objTemplate.build(); 
+			   
+			   //Zipkin: 
+			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -168,7 +175,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" ); 
 			   
 			   //Enviar mensaje DELETE: 
-			   restTemplate.delete( vURL );  //Es VOID. 
+			   objRestTemplate.delete( vURL );  //Es VOID. 
 		       
 			   //Armando estructura RESPONSE: 
 			   Auditoria       objAuditoria   = super.cargarDatosAuditoria( Constantes.IP_APP_NOK, Constantes.MSJ_APP_OK, Constantes.USUARIO_APP_NOK, Constantes.MSJ_APP_OK ); 
@@ -177,6 +184,8 @@ import zipkin2.Span;
 			   
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
+			   objSpan.finish();
+			   
 			   return objRetorno;
 		}
 		
@@ -190,12 +199,11 @@ import zipkin2.Span;
   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
-			   this.restTemplate = this.objTemplate.build(); 
+			   this.objRestTemplate = this.objTemplate.build(); 
 			   
-			   
-			   brave.Span span = this.tracer.nextSpan().name( "employee-service" ).start();
-			   log.info("=======> span: " + span);
-				 
+			   //Zipkin: 
+			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   objSpan.start();				 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -211,18 +219,17 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			    
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
 			   pe.com.capacitacion.dto.ResponseEmplMsg objResponseMsg = objGson.fromJson( vCadenaJSON_01, pe.com.capacitacion.dto.ResponseEmplMsg.class );
 			   log.info( "========>: objResponseMsg: " + objResponseMsg ); 
  
-			   
-			   span.finish();
-			   
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
+			   objSpan.finish();
+			   
 			   return objRetorno;
 		}
 	 	 	 	
@@ -237,7 +244,11 @@ import zipkin2.Span;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados/";
-			   this.restTemplate = this.objTemplate.build();  
+			   this.objRestTemplate = this.objTemplate.build();  
+			   
+			   //Zipkin: 
+			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -253,7 +264,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -262,7 +273,9 @@ import zipkin2.Span;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   return objRetorno; 
+			   objSpan.finish();
+			   
+			   return objRetorno;
 		}	
 		
 	   /**
@@ -276,7 +289,11 @@ import zipkin2.Span;
 			   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados-departamento/";
-			   this.restTemplate = this.objTemplate.build(); 
+			   this.objRestTemplate = this.objTemplate.build(); 
+			   
+			   //Zipkin: 
+			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -292,7 +309,7 @@ import zipkin2.Span;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   
 			   //Enviar mensaje GET: 
-			   String vCadenaJSON_01 = restTemplate.getForObject( vURL, String.class );
+			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
 			   
 			   //Transformar de JSON a OBJETO:   
@@ -301,7 +318,9 @@ import zipkin2.Span;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   return objRetorno; 
+			   objSpan.finish();
+			   
+			   return objRetorno;
 		}	
 	  
 	   /**

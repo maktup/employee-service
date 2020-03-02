@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
  
 		
 	    //[JAEGER]
-	    //@Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
-	    //public String jeagerUrlServer;
+	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    public String jeagerUrlServer;
         
 	    @Value( "${spring.application.name}" )               //ACCESO: al valor REMOTO [spring.application.name]
 	    public String nombreMicroServicio;

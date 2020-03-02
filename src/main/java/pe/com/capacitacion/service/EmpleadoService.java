@@ -21,8 +21,8 @@ import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
 import pe.com.capacitacion.util.Constantes;
-import brave.Span;
-import brave.Tracer; 
+//import brave.Span;
+//import brave.Tracer; 
  
 /**
  * EmpleadoService
@@ -47,11 +47,11 @@ import brave.Tracer;
         @Autowired
     	private Environment objVariablesEntorno;
          
-        @Autowired
-        private Tracer objTracer; 
+        //@Autowired
+        //private Tracer objTracer; 
         
-        @Autowired
-    	private RestTemplate objRestTemplate; 
+        //@Autowired
+    	//private RestTemplate objRestTemplate; 
            
         
  	   /**	
@@ -65,11 +65,11 @@ import brave.Tracer;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados";
-			   this.objRestTemplate = this.objTemplate.build(); 
+			   RestTemplate objRestTemplate = this.objTemplate.build(); 
 			   
 			   //Zipkin: 
-			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   objSpan.start();
+			   //Span objSpan = objTracer.nextSpan().name( "employee-service" );  
+			   //objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -103,7 +103,7 @@ import brave.Tracer;
 
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   objSpan.finish();
+			   //objSpan.finish();
 			   
 			   return objRetorno;
 		}
@@ -118,11 +118,11 @@ import brave.Tracer;
 			   log.info( "-----> Empleado 'eliminarEmpleadoService': {}", id );
 		
 			   String       vURI      = "/empleados/";
-			   this.objRestTemplate = this.objTemplate.build(); 
+			   RestTemplate objRestTemplate = this.objTemplate.build(); 
 			   
 			   //Zipkin: 
-			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   objSpan.start();
+			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   //objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -147,7 +147,7 @@ import brave.Tracer;
 			   
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   objSpan.finish();
+			   //objSpan.finish();
 			   
 			   return objRetorno;
 		}
@@ -162,11 +162,11 @@ import brave.Tracer;
   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
-			   this.objRestTemplate = this.objTemplate.build(); 
+			   RestTemplate objRestTemplate = this.objTemplate.build(); 
 			   
 			   //Zipkin: 
-			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   objSpan.start();				 
+			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   //objSpan.start();				 
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -191,7 +191,7 @@ import brave.Tracer;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   objSpan.finish();
+			   //objSpan.finish();
 			   
 			   return objRetorno;
 		}
@@ -207,11 +207,11 @@ import brave.Tracer;
 				 
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados/";
-			   this.objRestTemplate = this.objTemplate.build();  
+			   RestTemplate objRestTemplate = this.objTemplate.build();  
 			   
 			   //Zipkin: 
-			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   objSpan.start();
+			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   //objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -236,7 +236,7 @@ import brave.Tracer;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   objSpan.finish();
+			   //objSpan.finish();
 			   
 			   return objRetorno;
 		}	
@@ -252,11 +252,11 @@ import brave.Tracer;
 			   
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados-departamento/";
-			   this.objRestTemplate = this.objTemplate.build(); 
+			   RestTemplate objRestTemplate = this.objTemplate.build(); 
 			   
 			   //Zipkin: 
-			   Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   objSpan.start();
+			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
+			   //objSpan.start();
 			   
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
@@ -281,7 +281,7 @@ import brave.Tracer;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   objSpan.finish();
+			   //objSpan.finish();
 			   
 			   return objRetorno;
 		}	

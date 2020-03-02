@@ -52,44 +52,7 @@ import brave.Tracer;
         
         @Autowired
     	private RestTemplate objRestTemplate; 
-        
-        
-		public String saludar() throws InterruptedException{ 
-			log.info("saludar2");
-			
-			Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			objSpan.start();
-			
-			log.info("=======> A: " + objSpan);
-			
-			
-		    //Obtener el HOST del POD donde está ubicado el 'MICROSERVICIO'. 
-		    ServiceInstance objServiceInstance = this.discoveryClient.getInstances( Constantes.INSTANCIA_KUBERNETES_02 ).get( 0 );
-		    String vHostKubernetes = objServiceInstance.getUri() + ""; 
-		    
-			this.objRestTemplate = this.objTemplate.build();  
-			String s = this.objRestTemplate.getForObject( vHostKubernetes + "/" + Constantes.SERVICE_NAME_02 + "/hi", String.class );
-			
-			
-			objSpan.finish(); 
-			return "hi/" + s;
-		}
-
- 
-		public String hola() throws InterruptedException {
-			   log.info("hi"); 
-			   brave.Span span = this.objTracer.newTrace();
-			   
-			   Span objSpan = this.objTracer.nextSpan().name( "utl-capadb" );  
-			   objSpan.start();
-			   
-			   log.info("=======> A2: " + objSpan);
-			   log.info("=======> B2: " + span);
-			   
-				objSpan.finish(); 
-			   return "hello";
-		} 
-        
+           
         
  	   /**	
  	    * agregarEmpleadoService	

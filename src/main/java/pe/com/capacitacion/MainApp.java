@@ -75,6 +75,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		
 	    
 	    //----------------------------------------- [JEAGER] ----------------------------------------//   
+	    /*
 		@Bean
 	    public Tracer jaegerAlertTracer(){ 
 	           SamplerConfiguration   objSamplerConfig  = new SamplerConfiguration().withType( ConstSampler.TYPE ).withParam( 1 ); 
@@ -84,7 +85,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	           Tracer                 objTracer         = objConfig.getTracer();
 	           
 	           return objTracer;
-	    }   
+	    }   */
 	    //----------------------------------------- [JEAGER] ----------------------------------------// 
 		
 		

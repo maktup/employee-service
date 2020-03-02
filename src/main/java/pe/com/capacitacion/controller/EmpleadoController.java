@@ -29,32 +29,6 @@ import pe.com.capacitacion.service.EmpleadoService;
 		@Autowired
 		private EmpleadoService objEmpleadoService; 
  
-		//@Autowired
-		//private Tracer tracer;
-		
-		@RequestMapping("/")
-		public String saludar(){ 
-			log.info("========> saludar"); 
-			String s = "";
-			
-			try {
-				s = this.objEmpleadoService.saludar();
-			} 
-			catch ( Exception e) { 
-				    e.printStackTrace();
-			} 
-			return "/hi" + s;
-		}
-
-		@RequestMapping("/hi")
-		public String hola(){
-			log.info("========> hi"); 
- 
-			//this.tracer.addTag("random-sleep-millis", String.valueOf(millis) );
-			return "hello";
-		}
-		
-		
 		
 	   /**
 	    * agregarEmpleado	

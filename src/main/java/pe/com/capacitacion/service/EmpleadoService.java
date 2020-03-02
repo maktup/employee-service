@@ -16,13 +16,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service; 
 import org.springframework.web.client.RestTemplate; 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import io.jaegertracing.Tracer;
 import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
 import pe.com.capacitacion.util.Constantes;
-//import brave.Span;
-//import brave.Tracer; 
  
 /**
  * EmpleadoService
@@ -46,13 +46,10 @@ import pe.com.capacitacion.util.Constantes;
         
         @Autowired
     	private Environment objVariablesEntorno;
-         
-        //@Autowired
-        //private Tracer objTracer; 
         
-        //@Autowired
-    	//private RestTemplate objRestTemplate; 
-           
+        @Autowired
+        private io.opentracing.Tracer tracer;
+        
         
  	   /**	
  	    * agregarEmpleadoService	
@@ -66,11 +63,7 @@ import pe.com.capacitacion.util.Constantes;
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados";
 			   RestTemplate objRestTemplate = this.objTemplate.build(); 
-			   
-			   //Zipkin: 
-			   //Span objSpan = objTracer.nextSpan().name( "employee-service" );  
-			   //objSpan.start();
-			   
+ 
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -103,8 +96,7 @@ import pe.com.capacitacion.util.Constantes;
 
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   //objSpan.finish();
-			   
+               
 			   return objRetorno;
 		}
 		
@@ -119,11 +111,7 @@ import pe.com.capacitacion.util.Constantes;
 		
 			   String       vURI      = "/empleados/";
 			   RestTemplate objRestTemplate = this.objTemplate.build(); 
-			   
-			   //Zipkin: 
-			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   //objSpan.start();
-			   
+ 
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -147,8 +135,7 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   //objSpan.finish();
-			   
+ 
 			   return objRetorno;
 		}
 		
@@ -160,14 +147,12 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosAllService(){ 
 			   log.info( "-----> Empleado 'consultarEmpleadosAllService'" );
   
+			   this.tracer.activeSpan().setTag( "project.id", 1 ); 
+			    
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
 			   RestTemplate objRestTemplate = this.objTemplate.build(); 
-			   
-			   //Zipkin: 
-			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   //objSpan.start();				 
-			   
+ 
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -191,8 +176,7 @@ import pe.com.capacitacion.util.Constantes;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   //objSpan.finish();
-			   
+ 
 			   return objRetorno;
 		}
 	 	 	 	
@@ -208,11 +192,7 @@ import pe.com.capacitacion.util.Constantes;
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados/";
 			   RestTemplate objRestTemplate = this.objTemplate.build();  
-			   
-			   //Zipkin: 
-			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   //objSpan.start();
-			   
+ 
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -236,8 +216,7 @@ import pe.com.capacitacion.util.Constantes;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   //objSpan.finish();
-			   
+ 
 			   return objRetorno;
 		}	
 		
@@ -253,11 +232,7 @@ import pe.com.capacitacion.util.Constantes;
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados-departamento/";
 			   RestTemplate objRestTemplate = this.objTemplate.build(); 
-			   
-			   //Zipkin: 
-			   //Span objSpan = this.objTracer.nextSpan().name( "employee-service" );  
-			   //objSpan.start();
-			   
+ 
 			   //Variables de Entorno: 
 			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			  			   
@@ -281,8 +256,7 @@ import pe.com.capacitacion.util.Constantes;
  
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
-			   //objSpan.finish();
-			   
+ 
 			   return objRetorno;
 		}	
 	  

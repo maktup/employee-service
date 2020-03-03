@@ -16,9 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service; 
 import org.springframework.web.client.RestTemplate; 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-import io.jaegertracing.Tracer;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
 import pe.com.capacitacion.dto.ResponseEmplMsg;
 import pe.com.capacitacion.exception.AuditoriaException;
 import pe.com.capacitacion.properties.ConfigurationData_01;

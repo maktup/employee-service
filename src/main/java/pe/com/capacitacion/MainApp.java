@@ -72,10 +72,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	    //---------------------------------------- [SWAGGER] ----------------------------------------//
 		
 	    
-	    //----------------------------------------- [JEAGER] ----------------------------------------//   
-	    /*
+	    //----------------------------------------- [JEAGER] ----------------------------------------//  
 		@Bean
-	    public Tracer jaegerAlertTracer(){ 
+	    public io.opentracing.Tracer jaegerAlertTracer(){ 
 	           SamplerConfiguration   objSamplerConfig  = new SamplerConfiguration().withType( ConstSampler.TYPE ).withParam( 1 ); 
 	           SenderConfiguration    objSenderConfig   = SenderConfiguration.fromEnv().withEndpoint( this.constantes.jeagerUrlServer );
 	           ReporterConfiguration  objReporterConfig = ReporterConfiguration.fromEnv().withLogSpans( false ).withSender( objSenderConfig );
@@ -83,17 +82,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	           Tracer                 objTracer         = objConfig.getTracer();
 	           
 	           return objTracer;
-	    }  
-	    */
-	    
-		@Bean
-	    public io.opentracing.Tracer jaegerAlertTracer(){ 
-			   
-			   return new Configuration( this.constantes.nombreMicroServicio, 
-					   SamplerConfiguration.fromEnv(), 
-					   ReporterConfiguration.fromEnv() ).getTracer();
- 
-	    } 
+	    }   
 	    //----------------------------------------- [JEAGER] ----------------------------------------// 
  
  }

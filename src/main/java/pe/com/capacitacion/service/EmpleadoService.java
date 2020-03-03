@@ -87,7 +87,7 @@ import pe.com.capacitacion.util.Constantes;
 			   HttpEntity<Object> objEntityRequest = new HttpEntity<Object>( empleado, objHeader ); 
 			   			   
 			   //Agente JAEGER:  
-			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[" + Constantes.INSTANCIA_KUBERNETES_04 + "]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
 			   
 			   //Enviar mensaje POST: 
 			   ResponseEntity<String> vCadenaJSON_01 = objRestTemplate.postForEntity( vURL, objEntityRequest, String.class );
@@ -133,7 +133,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL [" + vURL + "]" ); 
 			   
 			   //Agente JAEGER:  
-			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[" + Constantes.INSTANCIA_KUBERNETES_04 + "]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
 			   
 			   //Enviar mensaje DELETE: 
 			   objRestTemplate.delete( vURL );  //Es VOID. 
@@ -180,7 +180,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			    
 			   //Agente JAEGER:  
-			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[" + Constantes.INSTANCIA_KUBERNETES_04 + "]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
 			   
 			   //Enviar mensaje GET: 
 			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
@@ -228,7 +228,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   			   
 			   //Agente JAEGER:  
-			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[" + Constantes.INSTANCIA_KUBERNETES_04 + "]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
 			   
 			   //Enviar mensaje GET: 
 			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
@@ -275,7 +275,7 @@ import pe.com.capacitacion.util.Constantes;
 			   log.info( "========>: vURL [" + vURL + "]" );
 			   
 			   //Agente JAEGER:  
-			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+			   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[" + Constantes.INSTANCIA_KUBERNETES_04 + "]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
 			   
 			   //Enviar mensaje GET: 
 			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );

@@ -46,7 +46,7 @@ import pe.com.capacitacion.util.Constantes;
     	private Environment objVariablesEntorno;
         
         @Autowired
-        private io.opentracing.Tracer tracer;
+        private io.opentracing.Tracer jaegerAlertTracer; 
         
         
  	   /**	
@@ -145,7 +145,7 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmplMsg> consultarEmpleadosAllService(){ 
 			   log.info( "-----> Empleado 'consultarEmpleadosAllService'" );
   
-			   this.tracer.activeSpan().setTag( "project.id", 1 ); 
+			   io.opentracing.Scope objSpanServicioPadre = jaegerAlertTracer.buildSpan( "employee-service" ).startActive( true );
 			    
 			   Gson         objGson   = new Gson();
 			   String       vURI      = "/empleados"; 
@@ -164,9 +164,15 @@ import pe.com.capacitacion.util.Constantes;
 			   String vURL = (vHostKubernetes + "/" + Constantes.SERVICE_NAME_04 + "/" + Constantes.HTTP_METHOD_01 + vURI); 
 			   log.info( "========>: vURL [" + vURL + "]" );
 			    
+			   
+			   io.opentracing.Span objSpanServicioHijo_01 = jaegerAlertTracer.buildSpan( "utl-capadb" ).asChildOf( objSpanServicioPadre.span() ).start();
+			   			   
 			   //Enviar mensaje GET: 
 			   String vCadenaJSON_01 = objRestTemplate.getForObject( vURL, String.class );
 			   log.info( "========>: vCadenaJSON_01 [" + vCadenaJSON_01 + "]" ); 
+			   
+			   objSpanServicioHijo_01.finish(); 
+			   
 			   
 			   //Transformar de JSON a OBJETO:   
 			   pe.com.capacitacion.dto.ResponseEmplMsg objResponseMsg = objGson.fromJson( vCadenaJSON_01, pe.com.capacitacion.dto.ResponseEmplMsg.class );
@@ -175,6 +181,9 @@ import pe.com.capacitacion.util.Constantes;
 			   //Objeto Return: 
 			   ResponseEntity<ResponseEmplMsg> objRetorno = new ResponseEntity<ResponseEmplMsg>( objResponseMsg, HttpStatus.OK ); 
  
+			   objSpanServicioPadre.close();
+			   
+			   
 			   return objRetorno;
 		}
 	 	 	 	

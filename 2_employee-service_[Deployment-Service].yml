@@ -57,7 +57,9 @@ spec:
       volumes:
         - name: volumen-logs 
           persistentVolumeClaim:
-            claimName: microservicio-employee-pvc
+            #claimName: microservicio-employee-pvc
+            #APUNTAR al VOLUMEN de 'FILEBEAT'
+            claimName: filebeat-pvc
           #--------------------------# 
 
 ---

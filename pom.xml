@@ -187,12 +187,14 @@
 		</plugins>
 	</build>
 
-	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' 
+	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS2]: 
+	     - Se apunta al GROUP que agrupa el 'REPOSITORIO CENTRAL' & 'REPOSITORIOS EXTERNOS' registrados en 'NEXUS2'.
+	     - Se requiere tener ACTIVO el 'NEXUS2' localmente & publico por medio de: 'NO-IP' (para KUBERNETES). -->
 	<repositories>
 		<repository>
-			<id>repoCentral_TallerMicroservicios</id>
-			<name>Repositorio CENTRAL proporcionado por NEXUS 2</name>
-			<url>http://repositorio-nexus.ddns.net:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
+			<id>GROUP_Proxy_CapaMicroservicios</id>
+			<name>Repositorio CENTRAL proporcionado por NEXUS 2 [GRUPO-PROXY]</name>
+			<url>http://repositorio-nexus.ddns.net:8081/nexus/content/groups/GROUP_Proxy_CapaMicroservicios/</url> 
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -200,7 +202,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>	
-    -->
+	</repositories>		
+    
 </project>
 

@@ -7,8 +7,8 @@
  
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.com.capacitacion</groupId>
-	<artifactId>employee-service2</artifactId>	
-	<name>employee-service2</name>
+	<artifactId>employee-service</artifactId>	
+	<name>employee-service</name>
 	<description>employee-service</description>
     <packaging>jar</packaging>
     <version>1.0.0</version>  

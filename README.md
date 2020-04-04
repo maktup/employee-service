@@ -10,6 +10,7 @@ IMPORTANTE:
   
 * Dentro del SCRIPT: 'DOCKERFILE' se estan manejando tambien 'VARIABLES DE ENTORNO' para algunos requerimientos en el MICROSERVICIO.   
 
+(HOLA ESTA ES UNA PRUEA)
 
 SWAGGER:
 --------
